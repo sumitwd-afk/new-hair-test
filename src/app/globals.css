@@ -3892,3 +3892,48 @@ img{
         align-self: start;
     }
 }
+
+/* Print Styling for PDF export */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    body * {
+        visibility: hidden !important;
+    }
+
+    .result-left-top,
+    .result-left-top * {
+        visibility: visible !important;
+    }
+
+    .result-left-top {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 3rem !important;
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 2rem !important;
+        background: #FFFFFF !important;
+    }
+
+    .result-actions {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .result-kit-floating-btn,
+    .whatsapp-consultation-btn,
+    iframe,
+    header,
+    footer {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
