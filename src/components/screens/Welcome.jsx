@@ -33,7 +33,7 @@ export default function Welcome({ startHref = "/plan" }) {
                     />
 
                     <p className="welcome-copy">
-                        An Ayurvedic hair diagnosis, personalised by Dr. Shilpa. <br/>
+                        A clinical hair diagnosis, personalised by QHT Clinic Doctors. <br/>
                         Trusted by <strong>50,000+ Indians.</strong>
                     </p>
 
@@ -76,13 +76,7 @@ export default function Welcome({ startHref = "/plan" }) {
                             />
                             <div className="review-card__copy">
                                 <span className="review-card__eyebrow">Reviewed by</span>
-                                <span className="review-card__meta">Our Ayurvedic doctors</span>
-                                <span className="review-card__name">Dr.Shilpa</span>
-                                <Image
-                                    src={drSignImage}
-                                    alt="Dr. Shilpa signature"
-                                    className="review-card__name-sign"
-                                />
+                                <span className="review-card__name" style={{ fontSize: "3rem", marginTop: "0.5rem" }}>QHT Clinic Doctors</span>
                             </div>
                         </div>
 

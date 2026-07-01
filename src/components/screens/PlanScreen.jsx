@@ -93,7 +93,7 @@ export default function PlanScreen() {
 
             <p className="question-screen__copy plan-screen__copy">
               We&apos;ll send your hair report on WhatsApp. No spam just{" "} 
-              <strong>your plan <br/> and a gentle check-in from Dr. Shilpa&apos;s team.</strong>
+              <strong>your plan <br/> and a gentle check-in from QHT Clinic Doctors.</strong>
             </p>
           </div>
 

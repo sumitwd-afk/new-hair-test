@@ -6,14 +6,14 @@ export default function DoctorCapsule({ className = "" }) {
     <aside className={`doctor-capsule ${className}`.trim()}>
       <Image
         src={drDpImage}
-        alt="Dr. Shilpa"
+        alt="QHT Clinic Doctors"
         className="doctor-capsule__avatar"
         priority
       />
       <div className="doctor-capsule__copy">
         <p>Reviewed by</p>
-        <span>Our Ayurvedic doctors</span>
-        <strong>Dr.Shilpa</strong>
+        <span>QHT Clinic</span>
+        <strong>Doctors</strong>
       </div>
     </aside>
   );

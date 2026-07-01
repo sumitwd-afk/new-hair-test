@@ -43,10 +43,10 @@ export const resultOverview = {
     image: doctorImage,
     badgeIcon: greenTickIcon,
     badgeLabel: "Expert advice",
-    name: "Dr. Shila",
-    role: "Senior Doctor",
+    name: "QHT Clinic Doctors",
+    role: "Senior Dermatologists",
     description:
-      "PGDM Bangalore Govt Medical College, Dermatologist, Plastic Surgeon",
+      "Clinical specialists in advanced hair restoration, follicle rejuvenation, and personalized scalp therapies.",
   },
   causes: [
     { id: "protein-gap", label: "Protein Gap", icon: causeIconOne },
