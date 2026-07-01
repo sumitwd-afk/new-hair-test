@@ -3865,7 +3865,21 @@ img{
 
     /* result page mobile end  */
 
-
-
 }
 
+/* Custom mobile/desktop visibility helper utilities */
+.show-mobile-only {
+    display: none !important;
+}
+.hide-mobile-only {
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    .show-mobile-only {
+        display: block !important;
+    }
+    .hide-mobile-only {
+        display: none !important;
+    }
+}

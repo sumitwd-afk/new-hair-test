@@ -227,6 +227,11 @@ export default function ResultPage() {
           <div className="result-layout">
             <div className="result-card result-left-card">
               <ResultOverviewSection overview={overview} />
+              
+              <div className="show-mobile-only" style={{ marginBottom: "2rem" }}>
+                <ResultKitSidebar kit={kit} />
+              </div>
+
               <ResultTestimonialsSection
                 arrows={resultTestimonialSlider}
                 testimonials={resultTestimonials}
@@ -235,7 +240,9 @@ export default function ResultPage() {
               <ResultFaqSection faqs={resultFaqs} />
             </div>
 
-            <ResultKitSidebar kit={kit} />
+            <div className="hide-mobile-only">
+              <ResultKitSidebar kit={kit} />
+            </div>
           </div>
         </div>
       </div>
