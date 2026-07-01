@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import QuizHeader from "@/components/common/QuizHeader";
@@ -13,41 +13,52 @@ import cityIcon from "@/images/city.png";
 import agreeButtonIcon from "@/images/agree-btn.png";
 import arrowIcon from "@/images/btn-arrow.png";
 import { initCampaignTracking, submitPartialLead } from "@/utils/quizHelper";
-
-const cityOptions = [
-  "Bengaluru",
-  "Chennai",
-  "Delhi",
-  "Hyderabad",
-  "Mumbai",
-  "Pune",
-];
+import { indianCities } from "@/utils/cities";
 
 export default function PlanScreen() {
   const router = useRouter();
   const [formState, setFormState] = useState({
     firstName: "",
+    countryCode: "+91",
     phone: "",
     city: "",
     agreed: true,
   });
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const dropdownRef = useRef(null);
+
+  // Close dropdown on click outside
   useEffect(() => {
     initCampaignTracking();
+
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
 
-    setFormState((currentState) => ({
-      ...currentState,
-      [name]:
-        type === "checkbox"
-          ? checked
-          : name === "phone"
-            ? value.replace(/\D/g, "").slice(0, 10)
-            : value,
-    }));
+    setFormState((currentState) => {
+      let finalValue = value;
+      if (type === "checkbox") {
+        finalValue = checked;
+      } else if (name === "phone") {
+        const numbersOnly = value.replace(/\D/g, "");
+        const limit = currentState.countryCode === "+91" ? 10 : 15;
+        finalValue = numbersOnly.slice(0, limit);
+      }
+      return {
+        ...currentState,
+        [name]: finalValue,
+      };
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -118,52 +129,170 @@ export default function PlanScreen() {
                 />
               </div>
 
-              <div className="plan-field plan-field--phone">
+              <div className="plan-field plan-field--phone" style={{ position: "relative" }}>
                 <Image
                   src={whatsappIcon}
                   alt=""
                   aria-hidden="true"
                   className="plan-field__icon"
                 />
-                <span className="plan-field__prefix">+91</span>
+                <select
+                  name="countryCode"
+                  value={formState.countryCode}
+                  onChange={handleChange}
+                  className="plan-field__prefix"
+                  style={{
+                    border: "none",
+                    background: "transparent",
+                    outline: "none",
+                    cursor: "pointer",
+                    fontFamily: "inherit",
+                    fontWeight: "600",
+                    color: "#475569",
+                    paddingRight: "0.5rem"
+                  }}
+                  aria-label="Country Code"
+                >
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+966">🇸🇦 +966</option>
+                  <option value="+965">🇰🇼 +965</option>
+                  <option value="+968">🇴🇲 +968</option>
+                  <option value="+973">🇧🇭 +973</option>
+                  <option value="+974">🇶🇦 +974</option>
+                  <option value="+65">🇸🇬 +65</option>
+                  <option value="+61">🇦🇺 +61</option>
+                </select>
                 <input
                   type="tel"
                   name="phone"
                   value={formState.phone}
                   onChange={handleChange}
                   className="plan-field__control"
-                  placeholder="10 digit number"
+                  placeholder={formState.countryCode === "+91" ? "10 digit number" : "Phone number"}
                   aria-label="WhatsApp number"
                   inputMode="numeric"
-                  pattern="[0-9]{10}"
+                  pattern={formState.countryCode === "+91" ? "[0-9]{10}" : "[0-9]{7,15}"}
                   required
                 />
               </div>
             </div>
 
-            <div className="plan-field plan-field--select">
+            <div className="plan-field plan-field--select" ref={dropdownRef} style={{ position: "relative" }}>
               <Image
                 src={cityIcon}
                 alt=""
                 aria-hidden="true"
                 className="plan-field__icon"
               />
-              <select
-                name="city"
+              <input
+                type="text"
+                readOnly
                 value={formState.city}
-                onChange={handleChange}
+                onClick={() => setIsDropdownOpen(true)}
                 className={`plan-field__control plan-field__control--select${formState.city ? "" : " is-placeholder"}`}
-                aria-label="City"
+                placeholder="Select your city from the list. *"
+                style={{ cursor: "pointer", border: "none", outline: "none", width: "100%", background: "transparent" }}
                 required
-              >
-                <option value="">Select your city from the list.</option>
-                {cityOptions.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-              </select>
-              <span className="plan-field__chevron" aria-hidden="true" />
+              />
+              <span className="plan-field__chevron" aria-hidden="true" onClick={() => setIsDropdownOpen(!isDropdownOpen)} style={{ cursor: "pointer" }} />
+              
+              {isDropdownOpen && (
+                <div className="city-dropdown-menu" style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  right: 0,
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #e2e8f0",
+                  borderRadius: "1.2rem",
+                  boxShadow: "0 1rem 3rem rgba(0, 0, 0, 0.15)",
+                  zIndex: 9999,
+                  marginTop: "0.8rem",
+                  padding: "1.2rem",
+                  maxHeight: "32rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem"
+                }}>
+                  <input
+                    type="text"
+                    placeholder="Type to search city..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "1.2rem 1.6rem",
+                      borderRadius: "0.8rem",
+                      border: "1px solid #cbd5e1",
+                      fontSize: "1.6rem",
+                      color: "#334155",
+                      outline: "none",
+                      backgroundColor: "#f8fafc"
+                    }}
+                    autoFocus
+                  />
+                  <div style={{
+                    overflowY: "auto",
+                    flexGrow: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.4rem",
+                    paddingRight: "0.4rem"
+                  }}>
+                    {indianCities
+                      .filter(city => city.toLowerCase().includes(searchTerm.toLowerCase()))
+                      .map((city) => (
+                        <button
+                          type="button"
+                          key={city}
+                          onClick={() => {
+                            setFormState(prev => ({ ...prev, city }));
+                            setIsDropdownOpen(false);
+                            setSearchTerm("");
+                          }}
+                          style={{
+                            width: "100%",
+                            textAlign: "left",
+                            padding: "1rem 1.4rem",
+                            borderRadius: "0.6rem",
+                            border: "none",
+                            background: formState.city === city ? "#f1f5f9" : "transparent",
+                            color: formState.city === city ? "#1e293b" : "#475569",
+                            fontSize: "1.6rem",
+                            fontWeight: formState.city === city ? "600" : "400",
+                            cursor: "pointer",
+                            transition: "all 0.15s ease"
+                          }}
+                          onMouseEnter={(e) => {
+                            e.target.style.background = "#f1f5f9";
+                            e.target.style.color = "#1e293b";
+                          }}
+                          onMouseLeave={(e) => {
+                            if (formState.city !== city) {
+                              e.target.style.background = "transparent";
+                              e.target.style.color = "#475569";
+                            }
+                          }}
+                        >
+                          {city}
+                        </button>
+                      ))}
+                    {indianCities.filter(city => city.toLowerCase().includes(searchTerm.toLowerCase())).length === 0 && (
+                      <div style={{
+                        padding: "1.5rem",
+                        textAlign: "center",
+                        color: "#94a3b8",
+                        fontSize: "1.5rem"
+                      }}>
+                        No matching cities found
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             <label className="plan-agreement">

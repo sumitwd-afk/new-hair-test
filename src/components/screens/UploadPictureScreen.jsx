@@ -41,6 +41,7 @@ export default function UploadPictureScreen() {
 
       const formData = {
         firstName: planDetails.firstName || "",
+        countryCode: planDetails.countryCode || "+91",
         phone: planDetails.phone || "",
         city: planDetails.city || "",
         gender,

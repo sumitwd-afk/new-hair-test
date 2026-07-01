@@ -359,7 +359,8 @@ export async function submitPartialLead(formState) {
   if (sessionStorage.getItem("partialLeadSent")) return;
 
   const campaign = getCampaignDetails();
-  const phone = `+91-${formState.phone}`;
+  const countryCode = formState.countryCode || "+91";
+  const phone = `${countryCode}-${formState.phone}`;
 
   const payload = [
     { Attribute: "FirstName", Value: formState.firstName || "" },
@@ -373,6 +374,10 @@ export async function submitPartialLead(formState) {
     { Attribute: "mx_utm_campaign_id", Value: campaign.mx_utm_campaign_id || "" },
     { Attribute: "SearchBy", Value: "Phone" }
   ];
+
+  if (formState.city) {
+    payload.push({ Attribute: "mx_City", Value: formState.city });
+  }
 
   const fd = new FormData();
   fd.append("leadPayload", JSON.stringify(payload));
@@ -393,13 +398,15 @@ export async function submitFullLead(formData, file = null) {
   if (typeof window === "undefined") return;
 
   const campaign = getCampaignDetails();
-  const phone = `+91-${formData.phone}`;
+  const countryCode = formData.countryCode || "+91";
+  const phone = `${countryCode}-${formData.phone}`;
 
   const payload = [
     { Attribute: "Phone", Value: phone }
   ];
 
   if (formData.firstName) payload.push({ Attribute: "FirstName", Value: formData.firstName });
+  if (formData.city) payload.push({ Attribute: "mx_City", Value: formData.city });
   if (formData.age) {
     const ageNum = parseInt(formData.age, 10);
     if (!isNaN(ageNum)) {
