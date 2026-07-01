@@ -1606,9 +1606,9 @@ section {
 
 .upload-screen__sample {
     width: 100%;
-    max-width: 40.6rem;
+    max-width: 80rem;
     margin: 3rem auto 0;
-    border-radius: 3rem;
+    border-radius: 1.5rem;
     overflow: hidden;
     background: #F4EFE9;
 }
