@@ -14,6 +14,7 @@ import agreeButtonIcon from "@/images/agree-btn.png";
 import arrowIcon from "@/images/btn-arrow.png";
 import { initCampaignTracking, submitPartialLead } from "@/utils/quizHelper";
 import { indianCities } from "@/utils/cities";
+import { countries } from "@/utils/countries";
 
 export default function PlanScreen() {
   const router = useRouter();
@@ -149,21 +150,16 @@ export default function PlanScreen() {
                     fontFamily: "inherit",
                     fontWeight: "600",
                     color: "#475569",
-                    paddingRight: "0.5rem"
+                    paddingRight: "0.5rem",
+                    maxWidth: "12rem"
                   }}
                   aria-label="Country Code"
                 >
-                  <option value="+91">🇮🇳 +91</option>
-                  <option value="+971">🇦🇪 +971</option>
-                  <option value="+1">🇺🇸 +1</option>
-                  <option value="+44">🇬🇧 +44</option>
-                  <option value="+966">🇸🇦 +966</option>
-                  <option value="+965">🇰🇼 +965</option>
-                  <option value="+968">🇴🇲 +968</option>
-                  <option value="+973">🇧🇭 +973</option>
-                  <option value="+974">🇶🇦 +974</option>
-                  <option value="+65">🇸🇬 +65</option>
-                  <option value="+61">🇦🇺 +61</option>
+                  {countries.map((c) => (
+                    <option key={`${c.name}-${c.code}`} value={c.code}>
+                      {c.flag} {c.code} ({c.name})
+                    </option>
+                  ))}
                 </select>
                 <input
                   type="tel"
