@@ -30,8 +30,6 @@ export default function ResultDoctorCard({ doctor }) {
           </div>
         </div>
       </div>
-
-      <p className="doctor-desc">{doctor.description}</p>
     </div>
   );
 }
