@@ -218,28 +218,30 @@ export default function UploadPictureScreen() {
                 className="upload-screen__button-arrow"
               />
             </button>
-
-            <button
-              type="button"
-              className="upload-screen__skip-btn"
-              onClick={() => submitForm(null)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: '#fff',
-                textDecoration: 'underline',
-                cursor: 'pointer',
-                fontSize: '15px',
-                marginTop: '15px',
-                width: '100%',
-                textAlign: 'center',
-                opacity: 0.8,
-                padding: '10px'
-              }}
-            >
-              Skip &amp; Get Results
-            </button>
           </div>
+
+          <button
+            type="button"
+            className="upload-screen__skip-btn"
+            onClick={() => submitForm(null)}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: '#717171',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              fontSize: '1.8rem',
+              fontWeight: '500',
+              marginTop: '2.5rem',
+              width: '100%',
+              textAlign: 'center',
+              opacity: 0.9,
+              padding: '1rem',
+              display: 'block'
+            }}
+          >
+            Skip &amp; Get Results
+          </button>
         </div>
 
         <div className="question-screen__footer">
