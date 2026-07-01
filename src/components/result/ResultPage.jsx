@@ -240,7 +240,7 @@ export default function ResultPage() {
               <ResultFaqSection faqs={resultFaqs} />
             </div>
 
-            <div className="hide-mobile-only">
+            <div className="hide-mobile-only desktop-sticky-sidebar">
               <ResultKitSidebar kit={kit} />
             </div>
           </div>

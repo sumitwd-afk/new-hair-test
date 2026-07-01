@@ -3883,3 +3883,12 @@ img{
         display: none !important;
     }
 }
+
+@media (min-width: 769px) {
+    .desktop-sticky-sidebar {
+        position: sticky;
+        top: 3rem;
+        z-index: 10;
+        align-self: start;
+    }
+}
