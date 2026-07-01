@@ -18,8 +18,19 @@ import addOnSevenImage from "@/images/add-on-7.png";
 import addOnEightImage from "@/images/add-on-8.png";
 import sliderLeftArrowImage from "@/images/slider-left-arrow.png";
 import sliderRightArrowImage from "@/images/slider-right-arrow.png";
-import testimonialOneImage from "@/images/matched-testino-img-1.png";
-import testimonialTwoImage from "@/images/matched-testino-img-2.png";
+import rajpalImage from "@/images/Rajpal.webp";
+import dayaImage from "@/images/Daya.webp";
+import nadeemImage from "@/images/Nadeem.webp";
+import armaanImage from "@/images/Armaan.webp";
+import saurabhImage from "@/images/Saurabh.webp";
+import tarunImage from "@/images/Tarun.webp";
+import shubhamImage from "@/images/Shubham.webp";
+import sanatImage from "@/images/Sanat.webp";
+import puneetImage from "@/images/Puneet.webp";
+import mayankImage from "@/images/Mayank.webp";
+import kshitijImage from "@/images/Kshitij.webp";
+import gauravImage from "@/images/Gaurav.webp";
+import dheerendraImage from "@/images/Dheerendra.webp";
 import kitOneImage from "@/images/kit-img-1.png";
 import kitTwoImage from "@/images/kit-img-2.png";
 import kitThreeImage from "@/images/kit-img-3.png";
@@ -126,31 +137,108 @@ export const resultTestimonialSlider = {
 
 export const resultTestimonials = [
   {
+    id: "rajpal",
+    image: rajpalImage,
+    quote: '"Superb hairline reconstruction and dense packing of follicles. The results look completely natural."',
+    name: "Rajpal Yadav",
+    age: "From : Mumbai, India",
+    label: "QHT RESULT",
+  },
+  {
+    id: "daya",
+    image: dayaImage,
+    quote: '"The FUE hair transplant procedure was smooth and pain-free. The density achieved is outstanding."',
+    name: "Daya",
+    age: "From : Maharashtra",
+    label: "QHT RESULT",
+  },
+  {
     id: "nadeem",
-    image: testimonialOneImage,
-    quote:
-      '"Started with the hair test. The doctor explained my stage clearly and gave me a structured plan. The follow-ups made all the difference"',
+    image: nadeemImage,
+    quote: '"Extremely happy with the hair restoration. Highly skilled doctors and excellent support staff."',
     name: "Nadeem",
-    age: "Age : 31y",
-    label: "AFTER 3 MONTH",
+    age: "From : Delhi, India",
+    label: "QHT RESULT",
   },
   {
-    id: "dayanand",
-    image: testimonialTwoImage,
-    quote:
-      '"Started with the hair test. The doctor explained my stage clearly and gave me a structured plan. The follow-ups made all the difference"',
-    name: "Dayanand",
-    age: "Age : 31y",
-    label: "AFTER 3 MONTH",
+    id: "armaan",
+    image: armaanImage,
+    quote: '"Dr. Shilpa and the QHT Clinic team mapped my hairline perfectly. Very natural-looking temples."',
+    name: "Armaan",
+    age: "From : Punjab, India",
+    label: "QHT RESULT",
   },
   {
-    id: "rahul",
-    image: testimonialOneImage,
-    quote:
-      '"Started with the hair test. The doctor explained my stage clearly and gave me a structured plan. The follow-ups made all the difference"',
-    name: "Rahul",
-    age: "Age : 31y",
-    label: "AFTER 3 MONTH",
+    id: "saurabh",
+    image: saurabhImage,
+    quote: '"Remarkable density on the crown area. The follicle survival rate exceeded my expectations."',
+    name: "Saurabh",
+    age: "From : Pune, India",
+    label: "QHT RESULT",
+  },
+  {
+    id: "tarun",
+    image: tarunImage,
+    quote: '"Excellent recovery timeline and minimal downtime. QHT technique is definitely the best in India."',
+    name: "Tarun",
+    age: "From : Rajasthan",
+    label: "QHT RESULT",
+  },
+  {
+    id: "shubham",
+    image: shubhamImage,
+    quote: '"Professional advice, custom planning, and seamless treatment. Highly recommend QHT Clinic."',
+    name: "Shubham",
+    age: "From : Bihar, India",
+    label: "QHT RESULT",
+  },
+  {
+    id: "sanat",
+    image: sanatImage,
+    quote: '"The hairline looks clean, aligned, and dense. The clinic followed up diligently post-surgery."',
+    name: "Sanat",
+    age: "From : Bangalore, India",
+    label: "QHT RESULT",
+  },
+  {
+    id: "puneet",
+    image: puneetImage,
+    quote: '"Perfect grafts alignment and natural look. The QHT procedure is highly recommended."',
+    name: "Puneet",
+    age: "From : Haryana, India",
+    label: "QHT RESULT",
+  },
+  {
+    id: "mayank",
+    image: mayankImage,
+    quote: '"Advanced follicular unit extraction. No scars, quick healing, and dense hair regrowth."',
+    name: "Mayank",
+    age: "From : Uttar Pradesh",
+    label: "QHT RESULT",
+  },
+  {
+    id: "kshitij",
+    image: kshitijImage,
+    quote: '"The clinical validation of the QHT technique speaks for itself. Extremely happy with my new look."',
+    name: "Kshitij",
+    age: "From : Maharashtra",
+    label: "QHT RESULT",
+  },
+  {
+    id: "gaurav",
+    image: gauravImage,
+    quote: '"Top-class hygiene standards and world-class OTs. The transplant is permanently safe and natural."',
+    name: "Gaurav",
+    age: "From : Delhi, India",
+    label: "QHT RESULT",
+  },
+  {
+    id: "dheerendra",
+    image: dheerendraImage,
+    quote: '"Life-changing results. My confidence is completely restored thanks to QHT Clinic doctors."',
+    name: "Dheerendra",
+    age: "From : Madhya Pradesh",
+    label: "QHT RESULT",
   },
 ];
 
