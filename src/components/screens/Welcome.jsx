@@ -96,7 +96,7 @@ export default function Welcome({ startHref = "/plan" }) {
                     </article>
 
                     <article className="trust-card">
-                        <div className="trust-card__group">
+                        <div className="trust-card__group" style={{ width: "100%", display: "flex", alignItems: "center", gap: "2.5rem" }}>
                             <Image
                                 src={groupReviewImage}
                                 alt="Group of trusted reviewers"
@@ -108,17 +108,6 @@ export default function Welcome({ startHref = "/plan" }) {
                                    <strong>50,000+ Indians.</strong>
                                 </p>
                             </div>
-                        </div>
-
-                        <span className="trust-card__divider" aria-hidden="true" />
-
-                        <div className="trust-card__rating">
-                            <div className="trust-card__stars" aria-label="5 star rating">
-                                ★★★★★
-                            </div>
-                            <p>
-                                <strong>4.8/5</strong> <br/>from 10,000+ Reviews
-                            </p>
                         </div>
                     </article>
                 </div>
