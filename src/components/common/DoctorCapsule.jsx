@@ -1,5 +1,5 @@
 import Image from "next/image";
-import drDpImage from "@/images/dr-dp.png";
+import drDpImage from "@/images/dr-qht.png";
 
 export default function DoctorCapsule({ className = "" }) {
   return (
