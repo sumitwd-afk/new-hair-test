@@ -54,10 +54,13 @@ export const resultOverview = {
     image: doctorImage,
     badgeIcon: greenTickIcon,
     badgeLabel: "Expert advice",
-    name: "QHT Clinic Doctors",
-    role: "Senior Dermatologists",
+    name: "Dr. S.K Mishra",
+    role: "Plastic Surgeon",
+    degree: "MCh (Plastic Surgery)",
+    experience: "~17 Years",
+    location: "Delhi",
     description:
-      "Clinical specialists in advanced hair restoration, follicle rejuvenation, and personalized scalp therapies.",
+      "Clinical specialist in advanced hair restoration, follicle rejuvenation, and personalized scalp therapies.",
   },
   causes: [
     { id: "protein-gap", label: "Protein Gap", icon: causeIconOne },

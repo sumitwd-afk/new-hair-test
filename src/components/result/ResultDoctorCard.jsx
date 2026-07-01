@@ -14,7 +14,20 @@ export default function ResultDoctorCard({ doctor }) {
             {doctor.badgeLabel}
           </span>
           <h3 className="doctor-name">{doctor.name}</h3>
-          <p className="doctor-role">{doctor.role}</p>
+          <p className="doctor-role">{doctor.role} • {doctor.degree}</p>
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1.2rem",
+            marginTop: "0.5rem",
+            fontSize: "1.5rem",
+            color: "#64748b",
+            fontWeight: "500"
+          }}>
+            <span>💼 {doctor.experience} Exp</span>
+            <span>|</span>
+            <span>📍 {doctor.location}</span>
+          </div>
         </div>
       </div>
 
