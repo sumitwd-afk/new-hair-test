@@ -227,11 +227,11 @@ export default function ResultPage() {
           <div className="result-layout">
             <div className="result-card result-left-card">
               <ResultOverviewSection overview={overview} />
-              <ResultAddonsSection addOns={resultAddOns} />
               <ResultTestimonialsSection
                 arrows={resultTestimonialSlider}
                 testimonials={resultTestimonials}
               />
+              <ResultAddonsSection addOns={resultAddOns} />
               <ResultFaqSection faqs={resultFaqs} />
             </div>
 
