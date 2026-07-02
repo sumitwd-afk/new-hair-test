@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import QuizHeader from "@/components/common/QuizHeader";
@@ -8,6 +8,7 @@ import QuestionProgress from "@/components/common/QuestionProgress";
 import DoctorCapsule from "@/components/common/DoctorCapsule";
 import lotusImage from "@/images/lotus.png";
 import scalpPictureImage from "@/images/scalp-picture.png";
+import femaleScalpImage from "@/images/female-hair-stage-1.jpg";
 import blackArrowIcon from "@/images/black-arrow.png";
 import whiteArrowIcon from "@/images/white-arrow.png";
 import { compressImage, submitFullLead } from "@/utils/quizHelper";
@@ -17,6 +18,14 @@ export default function UploadPictureScreen() {
   const cameraInputRef = useRef(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [gender, setGender] = useState("male");
+
+  useEffect(() => {
+    const storedGender = window.sessionStorage.getItem("urootsGender") || "male";
+    setGender(storedGender);
+  }, []);
+
+  const sampleImage = gender === "female" ? femaleScalpImage : scalpPictureImage;
 
   const handleOpenPicker = (inputRef) => {
     inputRef.current?.click();
@@ -161,7 +170,7 @@ export default function UploadPictureScreen() {
 
           <div className="upload-screen__sample">
             <Image
-              src={scalpPictureImage}
+              src={sampleImage}
               alt="Sample scalp picture"
               className="upload-screen__sample-image"
               priority

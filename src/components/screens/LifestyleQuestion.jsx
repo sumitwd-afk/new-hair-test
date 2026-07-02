@@ -92,8 +92,23 @@ export default function LifestyleQuestion({ gender }) {
   const options = optionsByGender[normalizedGender];
 
   const handleSelectOption = (id) => {
-    setSelectedOptions([id]);
-    window.sessionStorage.setItem("urootsLifestyle", JSON.stringify([id]));
+    setSelectedOptions((prev) => {
+      // "None of these" is exclusive
+      if (id === "none") {
+        return prev.includes("none") ? [] : ["none"];
+      }
+      // Deselect none if another option picked
+      const withoutNone = prev.filter((o) => o !== "none");
+      if (withoutNone.includes(id)) {
+        return withoutNone.filter((o) => o !== id);
+      }
+      return [...withoutNone, id];
+    });
+  };
+
+  const handleNext = () => {
+    if (selectedOptions.length === 0) return;
+    window.sessionStorage.setItem("urootsLifestyle", JSON.stringify(selectedOptions));
     router.push("/tried", { scroll: false });
   };
 
@@ -156,6 +171,17 @@ export default function LifestyleQuestion({ gender }) {
               );
             })}
           </ul>
+
+          <div className="question-screen__next-wrap">
+            <button
+              type="button"
+              className="question-screen__next-btn"
+              onClick={handleNext}
+              disabled={selectedOptions.length === 0}
+            >
+              Next
+            </button>
+          </div>
 
           <p className="question-screen__privacy-note lifestyle-screen__privacy-note">
             <Image

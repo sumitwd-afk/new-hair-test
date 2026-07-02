@@ -55,15 +55,29 @@ const triedOptions = [
 ];
 
 export default function TriedQuestion() {
-  const [selectedTreatment, setSelectedTreatment] = useState("");
+  const [selectedTreatments, setSelectedTreatments] = useState([]);
   const router = useRouter();
 
   const handleSelectTreatment = (id) => {
-    setSelectedTreatment(id);
-    const option = triedOptions.find((o) => o.id === id);
-    if (option) {
-      window.sessionStorage.setItem("urootsTried", option.label);
-    }
+    setSelectedTreatments((prev) => {
+      // "Nothing yet" is exclusive
+      if (id === "nothing-yet") {
+        return prev.includes("nothing-yet") ? [] : ["nothing-yet"];
+      }
+      const withoutNothing = prev.filter((o) => o !== "nothing-yet");
+      if (withoutNothing.includes(id)) {
+        return withoutNothing.filter((o) => o !== id);
+      }
+      return [...withoutNothing, id];
+    });
+  };
+
+  const handleNext = () => {
+    if (selectedTreatments.length === 0) return;
+    const labels = selectedTreatments
+      .map((id) => triedOptions.find((o) => o.id === id)?.label)
+      .filter(Boolean);
+    window.sessionStorage.setItem("urootsTried", labels.join(", "));
     router.push("/expectation", { scroll: false });
   };
 
@@ -94,7 +108,7 @@ export default function TriedQuestion() {
 
           <ul className="tried-options" aria-label="Treatments tried">
             {triedOptions.map((option) => {
-              const isSelected = selectedTreatment === option.id;
+              const isSelected = selectedTreatments.includes(option.id);
 
               return (
                 <li key={option.id} className="tried-options__item">
@@ -118,6 +132,17 @@ export default function TriedQuestion() {
               );
             })}
           </ul>
+
+          <div className="question-screen__next-wrap">
+            <button
+              type="button"
+              className="question-screen__next-btn"
+              onClick={handleNext}
+              disabled={selectedTreatments.length === 0}
+            >
+              Next
+            </button>
+          </div>
 
           <p className="question-screen__privacy-note tried-screen__privacy-note">
             <Image

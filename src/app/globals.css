@@ -1057,6 +1057,46 @@ section {
 .hair-problem-card.is-selected {
     border-color: #336A33;
     box-shadow: 0 1.2rem 3rem rgba(51, 106, 51, 0.12);
+    background: rgba(244, 252, 224, 0.7);
+}
+
+.hair-problem-card.is-disabled,
+.hair-problem-card:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ===== Next Button ===== */
+.question-screen__next-wrap {
+    margin: 3.2rem auto 0;
+    display: flex;
+    justify-content: center;
+}
+
+.question-screen__next-btn {
+    min-width: 28rem;
+    padding: 2rem 4rem;
+    border-radius: 999px;
+    background: #2DB346;
+    color: #fff;
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease, opacity 0.2s ease;
+    box-shadow: 0 0.8rem 2rem rgba(45, 179, 70, 0.3);
+}
+
+.question-screen__next-btn:hover:not(:disabled) {
+    background: #25a33e;
+    transform: translateY(-0.2rem);
+}
+
+.question-screen__next-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .hair-problem-card__image {
@@ -1308,6 +1348,7 @@ section {
 .lifestyle-card.is-selected {
     border-color: #336A33;
     box-shadow: 0 1.2rem 3rem rgba(51, 106, 51, 0.12);
+    background: rgba(244, 252, 224, 0.7);
 }
 
 .lifestyle-card__icon {
@@ -1386,6 +1427,7 @@ section {
 .tried-card.is-selected {
     border-color: #336A33;
     box-shadow: 0 1.2rem 3rem rgba(51, 106, 51, 0.12);
+    background: rgba(244, 252, 224, 0.7);
 }
 
 .tried-card__icon {

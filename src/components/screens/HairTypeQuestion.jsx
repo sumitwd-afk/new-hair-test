@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import QuizHeader from "@/components/common/QuizHeader";
@@ -8,12 +8,20 @@ import QuestionProgress from "@/components/common/QuestionProgress";
 import DoctorCapsule from "@/components/common/DoctorCapsule";
 import badgeIcon from "@/images/badge-icon.png";
 import lotusImage from "@/images/lotus.png";
+
+// Male images (existing)
 import hairTypeMildImage from "@/images/hair-type-mild.png";
 import hairTypeModerateImage from "@/images/hair-type-moderate.png";
 import hairTypeSignificantImage from "@/images/hair-type-significant.png";
 import hairTypeSevereImage from "@/images/hair-type-severe.png";
 
-const hairTypeOptions = [
+// Female images (new — Women 1-4)
+import femaleStage1Image from "@/images/female-hair-stage-1.jpg";
+import femaleStage2Image from "@/images/female-hair-stage-2.jpg";
+import femaleStage3Image from "@/images/female-hair-stage-3.jpg";
+import femaleStage4Image from "@/images/female-hair-stage-4.jpg";
+
+const maleOptions = [
   {
     id: "mild",
     label: "Mild",
@@ -29,7 +37,7 @@ const hairTypeOptions = [
   {
     id: "significant",
     label: "Significant",
-    description: "Noticeable bald areas fall",
+    description: "Noticeable bald areas",
     image: hairTypeSignificantImage,
   },
   {
@@ -40,9 +48,45 @@ const hairTypeOptions = [
   },
 ];
 
+const femaleOptions = [
+  {
+    id: "mild",
+    label: "Mild",
+    description: "Slight thinning at parting",
+    image: femaleStage1Image,
+  },
+  {
+    id: "moderate",
+    label: "Moderate",
+    description: "Wider parting, visible scalp",
+    image: femaleStage2Image,
+  },
+  {
+    id: "significant",
+    label: "Significant",
+    description: "Noticeable thinning on top",
+    image: femaleStage3Image,
+  },
+  {
+    id: "severe",
+    label: "Severe",
+    description: "Extensive scalp visibility",
+    image: femaleStage4Image,
+  },
+];
+
 export default function HairTypeQuestion() {
   const [selectedHairType, setSelectedHairType] = useState("");
+  const [gender, setGender] = useState("male");
   const router = useRouter();
+
+  // Read gender from sessionStorage on mount
+  useEffect(() => {
+    const storedGender = window.sessionStorage.getItem("urootsGender") || "male";
+    setGender(storedGender);
+  }, []);
+
+  const options = gender === "female" ? femaleOptions : maleOptions;
 
   const handleSelectHairType = (id) => {
     setSelectedHairType(id);
@@ -80,14 +124,14 @@ export default function HairTypeQuestion() {
           </div>
 
           <ul className="hair-type-options" aria-label="Hair type options">
-            {hairTypeOptions.map((option) => {
+            {options.map((option) => {
               const isSelected = selectedHairType === option.id;
 
               return (
                 <li key={option.id} className="hair-type-options__item">
                   <button
                     type="button"
-                    className={`hair-type-card${isSelected ? " is-selected" : ""}`}
+                    className={`hair-type-card${isSelected ? " is-selected" : ""} hair-type-card--${gender}`}
                     onClick={() => handleSelectHairType(option.id)}
                     aria-pressed={isSelected}
                   >

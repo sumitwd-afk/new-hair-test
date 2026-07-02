@@ -47,6 +47,8 @@ const concernOptionsByGender = {
   ],
 };
 
+const MAX_CONCERNS = 3;
+
 export default function HairProblemQuestion({ gender }) {
   const [selectedConcerns, setSelectedConcerns] = useState([]);
   const router = useRouter();
@@ -55,15 +57,23 @@ export default function HairProblemQuestion({ gender }) {
   const options = concernOptionsByGender[normalizedGender];
 
   const handleSelectConcern = (id) => {
-    setSelectedConcerns([id]);
-    const option = options.find((o) => o.id === id);
-    if (option) {
-      window.sessionStorage.setItem("urootsPattern", option.label);
-    }
+    setSelectedConcerns((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((c) => c !== id);
+      }
+      if (prev.length >= MAX_CONCERNS) return prev;
+      return [...prev, id];
+    });
+  };
+
+  const handleNext = () => {
+    if (selectedConcerns.length === 0) return;
+    const labels = selectedConcerns
+      .map((id) => options.find((o) => o.id === id)?.label)
+      .filter(Boolean);
+    window.sessionStorage.setItem("urootsPattern", labels.join(", "));
     const ageVal = searchParams.get("age");
-    if (ageVal) {
-      window.sessionStorage.setItem("urootsAge", ageVal);
-    }
+    if (ageVal) window.sessionStorage.setItem("urootsAge", ageVal);
     window.sessionStorage.setItem("urootsGender", normalizedGender);
     router.push("/hair-type", { scroll: false });
   };
@@ -101,14 +111,17 @@ export default function HairProblemQuestion({ gender }) {
           <ul className="hair-problem-options" aria-label="Hair concerns">
             {options.map((option) => {
               const isSelected = selectedConcerns.includes(option.id);
+              const isDisabled =
+                !isSelected && selectedConcerns.length >= MAX_CONCERNS;
 
               return (
                 <li key={option.id} className="hair-problem-options__item">
                   <button
                     type="button"
-                    className={`hair-problem-card${isSelected ? " is-selected" : ""}`}
+                    className={`hair-problem-card${isSelected ? " is-selected" : ""}${isDisabled ? " is-disabled" : ""}`}
                     onClick={() => handleSelectConcern(option.id)}
                     aria-pressed={isSelected}
+                    disabled={isDisabled}
                   >
                     <Image
                       src={option.image}
@@ -124,6 +137,17 @@ export default function HairProblemQuestion({ gender }) {
               );
             })}
           </ul>
+
+          <div className="question-screen__next-wrap">
+            <button
+              type="button"
+              className="question-screen__next-btn"
+              onClick={handleNext}
+              disabled={selectedConcerns.length === 0}
+            >
+              Next
+            </button>
+          </div>
 
           <p className="question-screen__privacy-note hair-problem-screen__privacy-note">
             <Image
