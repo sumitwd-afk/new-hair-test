@@ -8,7 +8,7 @@ import QuestionProgress from "@/components/common/QuestionProgress";
 import DoctorCapsule from "@/components/common/DoctorCapsule";
 import lotusImage from "@/images/lotus.png";
 import scalpPictureImage from "@/images/scalp-picture.png";
-import femaleScalpImage from "@/images/female-hair-stage-1.jpg";
+import femaleScalpImage from "@/images/female-scalp-sample.webp";
 import blackArrowIcon from "@/images/black-arrow.png";
 import whiteArrowIcon from "@/images/white-arrow.png";
 import { compressImage, submitFullLead } from "@/utils/quizHelper";
