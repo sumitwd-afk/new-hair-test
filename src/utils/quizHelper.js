@@ -474,8 +474,10 @@ export async function submitFullLead(formData, file = null) {
   fd.append("leadPayload", JSON.stringify(payload));
   fd.append("phone", phone);
 
-  if (file) {
-    fd.append("images", file);
+  // Support both single file and array of files
+  const files = Array.isArray(file) ? file : (file ? [file] : []);
+  for (const f of files) {
+    fd.append("images", f);
   }
 
   const res = await fetch(API_ENDPOINT, { method: "POST", body: fd });
@@ -521,8 +523,10 @@ export function trackGoogleConversion() {
 }
 
 export async function compressImage(file) {
+  const MAX_SIZE_BYTES = 1 * 1024 * 1024; // 1 MB hard limit
+
   return new Promise(resolve => {
-    const img = new Image();
+    const img = new window.Image();
     const reader = new FileReader();
 
     reader.onerror = () => {
@@ -544,6 +548,7 @@ export async function compressImage(file) {
       let { width, height } = img;
       const MAX_DIM = 1280;
 
+      // Resize dimensions if needed
       if (width > MAX_DIM || height > MAX_DIM) {
         if (width > height) {
           height = Math.round(height * MAX_DIM / width);
@@ -558,12 +563,26 @@ export async function compressImage(file) {
       canvas.height = height;
       canvas.getContext("2d").drawImage(img, 0, 0, width, height);
 
-      canvas.toBlob(blob => {
-        resolve(new File([blob], file.name.replace(/\..+$/, ".jpg"), {
-          type: "image/jpeg",
-          lastModified: Date.now()
-        }));
-      }, "image/jpeg", 0.8);
+      // Iteratively reduce quality until file is under 1MB
+      const tryCompress = (quality) => {
+        canvas.toBlob(blob => {
+          if (!blob) {
+            resolve(file); // fallback
+            return;
+          }
+          if (blob.size <= MAX_SIZE_BYTES || quality <= 0.1) {
+            resolve(new File([blob], file.name.replace(/\..+$/, ".jpg"), {
+              type: "image/jpeg",
+              lastModified: Date.now()
+            }));
+          } else {
+            // Reduce quality by 0.1 and try again
+            tryCompress(Math.round((quality - 0.1) * 10) / 10);
+          }
+        }, "image/jpeg", quality);
+      };
+
+      tryCompress(0.8);
     };
 
     reader.readAsDataURL(file);
