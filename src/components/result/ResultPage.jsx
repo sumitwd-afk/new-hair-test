@@ -134,6 +134,9 @@ export default function ResultPage() {
 
     const quoteText = `Based on your duration of hair loss (${duration || 'gradual'}), there is a ${regrowthVal}% possibility of regrowth. Starting your customized plan now will show visible results in ${resultsTime} of daily consistent use.`;
 
+    // Load uploaded photo if available
+    const uploadedPhotoUrl = window.sessionStorage.getItem("urootsUploadedPhotoUrl");
+
     setOverview({
       ...resultOverview,
       greeting: `Hi ${formData.firstName},`,
@@ -143,7 +146,9 @@ export default function ResultPage() {
       quote: {
         ...resultOverview.quote,
         text: quoteText
-      }
+      },
+      // Use uploaded photo if available, else keep default placeholder
+      ...(uploadedPhotoUrl ? { userImage: uploadedPhotoUrl } : {})
     });
 
     // 4. Map Kit Sidebar

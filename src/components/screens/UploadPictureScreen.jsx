@@ -69,7 +69,15 @@ export default function UploadPictureScreen() {
       previewUrl: URL.createObjectURL(file),
     }));
 
-    setSelectedFiles(prev => [...prev, ...withPreviews]);
+    setSelectedFiles(prev => {
+      const updated = [...prev, ...withPreviews];
+      // Save first image's blob URL to sessionStorage for result page display
+      const firstItem = updated[0];
+      if (firstItem?.previewUrl) {
+        window.sessionStorage.setItem("urootsUploadedPhotoUrl", firstItem.previewUrl);
+      }
+      return updated;
+    });
 
     // Reset input so same file can be re-selected if needed
     event.target.value = "";

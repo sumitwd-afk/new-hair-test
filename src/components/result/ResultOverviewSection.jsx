@@ -2,12 +2,26 @@ import Image from "next/image";
 import ResultDoctorCard from "@/components/result/ResultDoctorCard";
 
 export default function ResultOverviewSection({ overview }) {
+  // Check if userImage is a blob URL (uploaded by user) or a static import
+  const isBlobOrDataUrl =
+    typeof overview.userImage === "string" &&
+    (overview.userImage.startsWith("blob:") || overview.userImage.startsWith("data:"));
+
   return (
     <section className="result-left-top">
       <div className="result-left-inner">
         <div className="img-box result-user-box">
           <h1 className="desktop-none" >{overview.greeting}</h1>
-          <Image src={overview.userImage} alt="User avatar" />
+          {isBlobOrDataUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={overview.userImage}
+              alt="User uploaded hair photo"
+              style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
+            />
+          ) : (
+            <Image src={overview.userImage} alt="User avatar" />
+          )}
           <p className="desktop-none" >
             Based on your answers, you&apos;re experiencing{" "}
             <strong>{overview.highlight}</strong> {overview.summarySuffix}
