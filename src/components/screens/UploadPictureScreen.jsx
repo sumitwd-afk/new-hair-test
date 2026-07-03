@@ -88,6 +88,14 @@ export default function UploadPictureScreen() {
       const updated = [...prev];
       URL.revokeObjectURL(updated[index].previewUrl);
       updated.splice(index, 1);
+
+      // Always keep sessionStorage pointing to the first image in the list
+      if (updated.length > 0) {
+        window.sessionStorage.setItem("urootsUploadedPhotoUrl", updated[0].previewUrl);
+      } else {
+        window.sessionStorage.removeItem("urootsUploadedPhotoUrl");
+      }
+
       return updated;
     });
     setStatusMsg("");
