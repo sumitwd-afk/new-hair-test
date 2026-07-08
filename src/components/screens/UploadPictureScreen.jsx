@@ -127,6 +127,9 @@ export default function UploadPictureScreen() {
         setStatusMsg("Compressing images...");
         compressedFiles = await processFiles(files);
         setStatusMsg("");
+      } else {
+        // No photos selected / skipped — clear any stale blob URL from previous session
+        window.sessionStorage.removeItem("urootsUploadedPhotoUrl");
       }
 
       await submitFullLead(formData, compressedFiles);

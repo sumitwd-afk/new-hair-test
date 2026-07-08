@@ -1,23 +1,30 @@
 import Image from "next/image";
+import { useState } from "react";
 import ResultDoctorCard from "@/components/result/ResultDoctorCard";
 
 export default function ResultOverviewSection({ overview }) {
+  const [imgError, setImgError] = useState(false);
+
   // Check if userImage is a blob URL (uploaded by user) or a static import
   const isBlobOrDataUrl =
     typeof overview.userImage === "string" &&
     (overview.userImage.startsWith("blob:") || overview.userImage.startsWith("data:"));
+
+  // Show uploaded image only if it's a valid blob and hasn't errored
+  const showUploaded = isBlobOrDataUrl && !imgError;
 
   return (
     <section className="result-left-top">
       <div className="result-left-inner">
         <div className="img-box result-user-box">
           <h1 className="desktop-none" >{overview.greeting}</h1>
-          {isBlobOrDataUrl ? (
+          {showUploaded ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={overview.userImage}
               alt="User uploaded hair photo"
               style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
+              onError={() => setImgError(true)}
             />
           ) : (
             <Image src={overview.userImage} alt="User avatar" />
