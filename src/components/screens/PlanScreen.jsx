@@ -161,7 +161,7 @@ export default function PlanScreen() {
                       fontFamily: "inherit",
                       fontWeight: "600",
                       color: "#475569",
-                      fontSize: "inherit",
+                      fontSize: "2rem",
                       display: "flex",
                       alignItems: "center",
                       gap: "0.3rem",
