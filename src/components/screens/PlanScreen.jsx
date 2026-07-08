@@ -30,13 +30,21 @@ export default function PlanScreen() {
   const [searchTerm, setSearchTerm] = useState("");
   const dropdownRef = useRef(null);
 
-  // Close dropdown on click outside
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [countrySearch, setCountrySearch] = useState("");
+  const countryDropdownRef = useRef(null);
+
+  // Close dropdowns on click outside
   useEffect(() => {
     initCampaignTracking();
 
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
+      }
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target)) {
+        setIsCountryDropdownOpen(false);
+        setCountrySearch("");
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -137,30 +145,123 @@ export default function PlanScreen() {
                   aria-hidden="true"
                   className="plan-field__icon"
                 />
-                <select
-                  name="countryCode"
-                  value={formState.countryCode}
-                  onChange={handleChange}
-                  className="plan-field__prefix"
-                  style={{
-                    border: "none",
-                    background: "transparent",
-                    outline: "none",
-                    cursor: "pointer",
-                    fontFamily: "inherit",
-                    fontWeight: "600",
-                    color: "#475569",
-                    paddingRight: "0.5rem",
-                    maxWidth: "12rem"
-                  }}
-                  aria-label="Country Code"
+                {/* Custom country code picker — shows only flag+code when closed */}
+                <div
+                  ref={countryDropdownRef}
+                  style={{ position: "relative", flexShrink: 0 }}
                 >
-                  {countries.map((c) => (
-                    <option key={`${c.name}-${c.code}`} value={c.code}>
-                      {c.flag} {c.code} ({c.name})
-                    </option>
-                  ))}
-                </select>
+                  <button
+                    type="button"
+                    onClick={() => { setIsCountryDropdownOpen(o => !o); setCountrySearch(""); }}
+                    style={{
+                      border: "none",
+                      background: "transparent",
+                      outline: "none",
+                      cursor: "pointer",
+                      fontFamily: "inherit",
+                      fontWeight: "600",
+                      color: "#475569",
+                      fontSize: "inherit",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.3rem",
+                      padding: "0 0.6rem 0 0",
+                      whiteSpace: "nowrap",
+                    }}
+                    aria-label="Select country code"
+                    aria-haspopup="listbox"
+                    aria-expanded={isCountryDropdownOpen}
+                  >
+                    {/* Only flag + code shown in selected state */}
+                    {(() => {
+                      const sel = countries.find(c => c.code === formState.countryCode);
+                      return sel ? `${sel.flag} ${sel.code}` : formState.countryCode;
+                    })()}
+                    <span style={{ fontSize: "1rem", opacity: 0.5 }}>▾</span>
+                  </button>
+
+                  {isCountryDropdownOpen && (
+                    <div
+                      role="listbox"
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: 0,
+                        minWidth: "22rem",
+                        backgroundColor: "#ffffff",
+                        border: "1px solid #e2e8f0",
+                        borderRadius: "1.2rem",
+                        boxShadow: "0 1rem 3rem rgba(0,0,0,0.15)",
+                        zIndex: 9999,
+                        marginTop: "0.8rem",
+                        padding: "1rem",
+                        maxHeight: "28rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.6rem",
+                      }}
+                    >
+                      <input
+                        type="text"
+                        placeholder="Search country..."
+                        value={countrySearch}
+                        onChange={e => setCountrySearch(e.target.value)}
+                        style={{
+                          width: "100%",
+                          padding: "1rem 1.2rem",
+                          borderRadius: "0.8rem",
+                          border: "1px solid #cbd5e1",
+                          fontSize: "1.5rem",
+                          color: "#334155",
+                          outline: "none",
+                          backgroundColor: "#f8fafc",
+                          flexShrink: 0,
+                        }}
+                        autoFocus
+                      />
+                      <div style={{ overflowY: "auto", flexGrow: 1 }}>
+                        {countries
+                          .filter(c =>
+                            c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
+                            c.code.includes(countrySearch)
+                          )
+                          .map(c => (
+                            <button
+                              key={`${c.name}-${c.code}`}
+                              type="button"
+                              role="option"
+                              aria-selected={formState.countryCode === c.code}
+                              onClick={() => {
+                                setFormState(prev => ({ ...prev, countryCode: c.code }));
+                                setIsCountryDropdownOpen(false);
+                                setCountrySearch("");
+                              }}
+                              style={{
+                                width: "100%",
+                                textAlign: "left",
+                                padding: "0.9rem 1.2rem",
+                                borderRadius: "0.6rem",
+                                border: "none",
+                                background: formState.countryCode === c.code ? "#f1f5f9" : "transparent",
+                                color: formState.countryCode === c.code ? "#1e293b" : "#475569",
+                                fontSize: "1.5rem",
+                                fontWeight: formState.countryCode === c.code ? "600" : "400",
+                                cursor: "pointer",
+                                display: "flex",
+                                gap: "0.6rem",
+                                alignItems: "center",
+                              }}
+                            >
+                              {/* Full info in list: flag + code + name */}
+                              <span>{c.flag}</span>
+                              <span style={{ fontWeight: 600 }}>{c.code}</span>
+                              <span style={{ color: "#64748b" }}>{c.name}</span>
+                            </button>
+                          ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <input
                   type="tel"
                   name="phone"
