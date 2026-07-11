@@ -408,6 +408,11 @@ export async function submitFullLead(formData, file = null) {
   if (formData.firstName) payload.push({ Attribute: "FirstName", Value: formData.firstName });
   if (formData.city) payload.push({ Attribute: "mx_City", Value: formData.city });
   if (formData.age) {
+    // Send age group label directly to mx_Patient_Age_Group (LSQ Dropdown field)
+    // e.g. "18–24Y", "25–34Y", "35–44Y", "45–54Y", "55Y+"
+    payload.push({ Attribute: "mx_Patient_Age_Group", Value: formData.age });
+
+    // Also keep the numeric age for mx_Patient_Age (existing field)
     const ageNum = parseInt(formData.age, 10);
     if (!isNaN(ageNum)) {
       payload.push({ Attribute: "mx_Patient_Age", Value: ageNum });

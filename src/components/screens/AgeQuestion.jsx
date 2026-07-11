@@ -18,7 +18,7 @@ import female3Image from "@/images/female-3.png";
 import female4Image from "@/images/female-4.png";
 import female5Image from "@/images/female-5.png";
 
-const ageRanges = ["18-24Y", "25-34Y", "35-44Y", "45-54Y", "55Y+"];
+const ageRanges = ["18–24Y", "25–34Y", "35–44Y", "45–54Y", "55Y+"];
 
 const ageImagesByGender = {
   male: [male1Image, male2Image, male3Image, male4Image, male5Image],
