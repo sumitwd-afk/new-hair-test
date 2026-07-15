@@ -42,13 +42,13 @@ export const resultOverview = {
     image: doctorImage,
     badgeIcon: greenTickIcon,
     badgeLabel: "Expert advice",
-    name: "Dr. S.K Mishra",
-    role: "Plastic Surgeon",
-    degree: "MCh (Plastic Surgery)",
-    experience: "~17 Years",
+    name: "Dr. Neha",
+    role: "Dermatologist",
+    degree: "MD (Dermatology)",
+    experience: "~10 Years",
     location: "Delhi",
     description:
-      "Clinical specialist in advanced hair restoration, follicle rejuvenation, and personalized scalp therapies.",
+      "Clinical specialist in personalized hair restoration, follicle rejuvenation, and advanced scalp treatments.",
   },
   causes: [
     { id: "protein-gap", label: "Protein Gap", icon: causeIconOne },
