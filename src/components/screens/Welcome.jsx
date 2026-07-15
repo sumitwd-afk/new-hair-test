@@ -4,7 +4,7 @@ import HeaderLogo from "@/components/common/HeaderLogo";
 import handImage from "@/images/hand.png";
 import arrowIcon from "@/images/arrow-icon.png";
 import lotusImage from "@/images/lotus.png";
-import drDpImage from "@/images/dr-neha.webp";
+import drDpImage from "@/images/dr-neha-profile.webp";
 import drSignImage from "@/images/dr-sign.png";
 import lockImage from "@/images/lock.png";
 import groupReviewImage from "@/images/group-review.png";

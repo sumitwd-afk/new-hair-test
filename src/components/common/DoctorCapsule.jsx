@@ -1,5 +1,5 @@
 import Image from "next/image";
-import drDpImage from "@/images/dr-neha.webp";
+import drDpImage from "@/images/dr-neha-profile.webp";
 
 export default function DoctorCapsule({ className = "" }) {
   return (
