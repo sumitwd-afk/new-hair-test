@@ -8,10 +8,14 @@ export const metadata = {
   },
 };
 
+import RouteGuard from "@/components/common/RouteGuard";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" >
-      <body>{children}</body>
+      <body>
+        <RouteGuard>{children}</RouteGuard>
+      </body>
     </html>
   );
 }

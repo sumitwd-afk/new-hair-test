@@ -24,10 +24,16 @@ export default function ResultPage() {
   const [kit, setKit] = useState(resultKit);
   const [consultation, setConsultation] = useState(null);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     // 1. Load details from sessionStorage
     const planDetailsStr = window.sessionStorage.getItem("urootsPlanDetails");
-    if (!planDetailsStr) return; // Fallback to static data if quiz wasn't completed
+    if (!planDetailsStr) {
+      // Redirect to Step 1 (PlanScreen) if details are missing
+      window.location.replace("/plan");
+      return;
+    }
 
     const planDetails = JSON.parse(planDetailsStr);
     const gender = window.sessionStorage.getItem("urootsGender") || "male";
@@ -181,7 +187,17 @@ export default function ResultPage() {
         checkoutUrl
       });
     }
+    
+    setLoading(false);
   }, []);
+
+  if (loading) {
+    return (
+      <main className="result-page" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#fcfcf9" }}>
+        <div style={{ fontSize: "1.8rem", color: "#666" }}>Loading result...</div>
+      </main>
+    );
+  }
 
   return (
     <main className="result-page">
