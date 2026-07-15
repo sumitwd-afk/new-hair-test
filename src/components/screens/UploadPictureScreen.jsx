@@ -13,7 +13,7 @@ import blackArrowIcon from "@/images/black-arrow.png";
 import whiteArrowIcon from "@/images/white-arrow.png";
 import { compressImage, submitFullLead } from "@/utils/quizHelper";
 
-const MAX_FILES = 1;
+const MAX_FILES = 5;
 const MAX_SIZE_BYTES = 1 * 1024 * 1024; // 1 MB
 
 export default function UploadPictureScreen() {
@@ -209,7 +209,7 @@ export default function UploadPictureScreen() {
           </div>
 
           <p className="upload-screen__note">
-            Single image upload (1 photo only)
+            You can upload up to {MAX_FILES} photos — top, front, side views help us analyse better.
           </p>
 
           {/* Hidden file inputs */}
