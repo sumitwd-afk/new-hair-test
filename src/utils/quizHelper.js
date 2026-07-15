@@ -78,28 +78,28 @@ export const PRODUCTS = {
     description: 'Daily hydrating shampoo for men & women'
   },
   'gentle-gut': {
-    name: 'URoots Hair Supplement',
-    price: 699,
-    variantId: '49240873074930',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_4e3b858d-5a27-4826-8067-de452dbbabf5.webp?v=1782832126',
-    url: 'https://theuroots.com/products/uroots-hair-supplement',
-    description: 'Hair supplement for gut & overall wellness'
+    name: 'Gentle Gut',
+    price: 499,
+    variantId: '48665368101106',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/01_d847c4b7-e0a9-4ca5-b5e4-55c3cb2193be.jpg?v=1768902046',
+    url: 'https://theuroots.com/products/gentle-gut',
+    description: 'Gut health supplement for better nutrient absorption'
   },
   'calm-mind': {
-    name: 'URoots Hair Serum',
-    price: 1199,
-    variantId: '49240867045618',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_1ea3fe27-8d45-4014-86c9-a94195b53d93.webp?v=1782833030',
-    url: 'https://theuroots.com/products/uroots-hair-serum-for-fuller-looking-hair-daily-scalp-care',
-    description: 'Hair serum for stress-related hair loss'
+    name: 'Calm Mind',
+    price: 499,
+    variantId: '48665443107058',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/01_87862ced-057b-4494-b1e8-b7cbcc8ff180.jpg?v=1768901860',
+    url: 'https://theuroots.com/products/calm-mind',
+    description: 'Stress relief supplement for mental wellness'
   },
   'pure-scalp-oil': {
-    name: 'URoots Hair Serum',
-    price: 1199,
-    variantId: '49240867045618',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_1ea3fe27-8d45-4014-86c9-a94195b53d93.webp?v=1782833030',
-    url: 'https://theuroots.com/products/uroots-hair-serum-for-fuller-looking-hair-daily-scalp-care',
-    description: 'Hair serum for scalp nourishment'
+    name: 'Pure Scalp Oil',
+    price: 399,
+    variantId: '48665399886066',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/01_3a11b1a6-7cd2-419c-b5c7-79b4ce1b218a.jpg?v=1768901970',
+    url: 'https://theuroots.com/products/pure-scalp-oil',
+    description: 'Nourishing scalp oil for healthy hair roots'
   }
 };
 
