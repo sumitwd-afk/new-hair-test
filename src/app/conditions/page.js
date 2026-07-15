@@ -66,18 +66,17 @@ export default function ConditionsQuestion() {
             <p className="question-screen__copy">Select all that apply</p>
           </div>
 
-          <ul className="gender-options" aria-label="Health condition options">
+          <ul className="new-step-options" aria-label="Health condition options">
             {options.map((option) => {
               const isSelected = selected.includes(option.id);
               return (
-                <li key={option.id} className="gender-options__item">
+                <li key={option.id} className="new-step-item">
                   <button
                     type="button"
-                    className={`gender-card${isSelected ? " is-selected" : ""}`}
+                    className={`new-step-card${isSelected ? " is-selected" : ""}`}
                     onClick={() => handleSelect(option.id)}
-                    style={{ minHeight: "10rem" }}
                   >
-                    <span className="gender-card__label" style={{ fontSize: "1.8rem", textAlign: "center", lineHeight: "1.3" }}>
+                    <span className="new-step-card__label">
                       {option.label}
                     </span>
                   </button>

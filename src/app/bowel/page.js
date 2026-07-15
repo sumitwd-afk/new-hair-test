@@ -51,18 +51,17 @@ export default function BowelQuestion() {
             />
           </div>
 
-          <ul className="gender-options" aria-label="Bowel movement options" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "3rem", margin: "4.8rem auto 0", maxWidth: "100rem" }}>
+          <ul className="new-step-options" aria-label="Bowel movement options">
             {options.map((option) => {
               const isSelected = selected === option.id;
               return (
-                <li key={option.id} className="gender-options__item" style={{ flex: "0 1 calc(33.333% - 2rem)", minWidth: "26rem" }}>
+                <li key={option.id} className="new-step-item">
                   <button
                     type="button"
-                    className={`gender-card${isSelected ? " is-selected" : ""}`}
+                    className={`new-step-card${isSelected ? " is-selected" : ""}`}
                     onClick={() => handleSelect(option.id, option.label)}
-                    style={{ minHeight: "10rem" }}
                   >
-                    <span className="gender-card__label" style={{ fontSize: "1.8rem", textAlign: "center", lineHeight: "1.3" }}>
+                    <span className="new-step-card__label">
                       {option.label}
                     </span>
                   </button>
