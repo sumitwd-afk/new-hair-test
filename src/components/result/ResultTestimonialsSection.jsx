@@ -6,7 +6,7 @@ import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 
 function YouTubeCard({ testimonial }) {
-  const { youtubeId, name, age, label, quote } = testimonial;
+  const { youtubeId, name, review } = testimonial;
   const thumbnail = `https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`;
   const [playing, setPlaying] = useState(false);
 
@@ -41,6 +41,11 @@ function YouTubeCard({ testimonial }) {
             </button>
           </>
         )}
+      </div>
+
+      <div className="text-box yt-testi-text-box">
+        <h4>{name}</h4>
+        <p>{review}</p>
       </div>
     </article>
   );
