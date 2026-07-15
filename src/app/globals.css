@@ -4125,7 +4125,7 @@ img{
 }
 
 .new-step-card__label {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     line-height: 1.35;
     color: #333333;
     font-weight: 500;
@@ -4153,7 +4153,7 @@ img{
     }
     
     .new-step-card__label {
-        font-size: 1.6rem;
+        font-size: 1.9rem;
         line-height: 1.3;
     }
 }
