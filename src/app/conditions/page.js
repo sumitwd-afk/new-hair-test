@@ -66,54 +66,30 @@ export default function ConditionsQuestion() {
             <p className="question-screen__copy">Select all that apply</p>
           </div>
 
-          <ul className="gender-options" aria-label="Health condition options" style={{ display: "flex", flexDirection: "column", gap: "1.5rem", maxWidth: "45rem", margin: "0 auto 3rem" }}>
+          <ul className="gender-options" aria-label="Health condition options">
             {options.map((option) => {
               const isSelected = selected.includes(option.id);
               return (
-                <li key={option.id} style={{ listStyle: "none", width: "100%" }}>
+                <li key={option.id} className="gender-options__item">
                   <button
                     type="button"
                     className={`gender-card${isSelected ? " is-selected" : ""}`}
                     onClick={() => handleSelect(option.id)}
-                    style={{
-                      width: "100%",
-                      padding: "2rem",
-                      borderRadius: "1.2rem",
-                      background: isSelected ? "#e2f0d9" : "#ffffff",
-                      border: isSelected ? "2px solid #70ad47" : "1px solid #cbd5e1",
-                      fontSize: "1.6rem",
-                      fontWeight: "600",
-                      color: "#334155",
-                      cursor: "pointer",
-                      textAlign: "center",
-                      transition: "all 0.2s"
-                    }}
+                    style={{ minHeight: "10rem" }}
                   >
-                    {option.label}
+                    <span className="gender-card__label">{option.label}</span>
                   </button>
                 </li>
               );
             })}
           </ul>
 
-          <div className="question-screen__next-wrap" style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <div className="question-screen__next-wrap">
             <button
               type="button"
               className="question-screen__next-btn"
               onClick={handleNext}
               disabled={selected.length === 0}
-              style={{
-                width: "100%",
-                maxWidth: "45rem",
-                padding: "1.8rem",
-                borderRadius: "10rem",
-                background: "#000000",
-                color: "#ffffff",
-                fontSize: "1.8rem",
-                fontWeight: "600",
-                border: "none",
-                cursor: "pointer"
-              }}
             >
               Next
             </button>
