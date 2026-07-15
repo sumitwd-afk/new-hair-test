@@ -38,8 +38,8 @@ export default function AgeQuestion({ gender }) {
         <div className="question-screen__content age-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={20}
-            questionLabel="Question 3 of 15"
+            progress={18.75}
+            questionLabel="Question 4 of 16"
           />
 
           <div className="question-screen__hero age-screen__hero">

@@ -34,8 +34,8 @@ export default function FamilyQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={38}
-            questionLabel="Question 6 of 15"
+            progress={31.25}
+            questionLabel="Question 6 of 16"
           />
 
           <div className="question-screen__hero">

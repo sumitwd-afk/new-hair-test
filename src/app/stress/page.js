@@ -34,8 +34,8 @@ export default function StressQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={62}
-            questionLabel="Question 10 of 15"
+            progress={56.25}
+            questionLabel="Question 10 of 16"
           />
 
           <div className="question-screen__hero">

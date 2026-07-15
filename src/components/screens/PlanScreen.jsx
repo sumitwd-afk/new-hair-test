@@ -92,8 +92,8 @@ export default function PlanScreen() {
         <div className="question-screen__content plan-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={6.6}
-            questionLabel="Question 1 of 15"
+            progress={6.25}
+            questionLabel="Question 2 of 16"
           />
 
           <div className="question-screen__hero plan-screen__hero">

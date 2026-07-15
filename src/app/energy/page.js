@@ -35,8 +35,8 @@ export default function EnergyQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={87}
-            questionLabel="Question 14 of 15"
+            progress={81.25}
+            questionLabel="Question 14 of 16"
           />
 
           <div className="question-screen__hero">

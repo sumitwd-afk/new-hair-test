@@ -49,8 +49,8 @@ export default function TriggersQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={44}
-            questionLabel="Question 7 of 15"
+            progress={37.5}
+            questionLabel="Question 7 of 16"
           />
 
           <div className="question-screen__hero">

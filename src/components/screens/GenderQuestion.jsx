@@ -43,12 +43,12 @@ export default function GenderQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={13.3}
-            questionLabel="Question 2 of 15"
+            progress={12.5}
+            questionLabel="Question 3 of 16"
           />
 
           <div className="question-screen__hero">
-            <p className="question-screen__eyebrow">Question 2 of 15</p>
+            <p className="question-screen__eyebrow">Question 3 of 16</p>
             <h2 className="question-screen__intro">Let&apos;s Start Simple.</h2>
             <h1 className="question-screen__title">Which best describes you?</h1>
 
