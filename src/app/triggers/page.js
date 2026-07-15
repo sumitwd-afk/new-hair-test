@@ -78,7 +78,9 @@ export default function TriggersQuestion() {
                     onClick={() => handleSelect(option.id)}
                     style={{ minHeight: "10rem" }}
                   >
-                    <span className="gender-card__label">{option.label}</span>
+                    <span className="gender-card__label" style={{ fontSize: "1.8rem", textAlign: "center", lineHeight: "1.3" }}>
+                      {option.label}
+                    </span>
                   </button>
                 </li>
               );
