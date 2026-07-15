@@ -86,8 +86,8 @@ export default function HairProblemQuestion({ gender }) {
         <div className="question-screen__content hair-problem-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={40}
-            questionLabel="Question 5 of 15"
+            progress={26.6}
+            questionLabel="Question 4 of 15"
           />
 
           <div className="question-screen__hero hair-problem-screen__hero">
