@@ -34,7 +34,7 @@ export default function ResultDoctorCard({ doctor }) {
           <strong>{doctor.degree}</strong>
         </div>
         <div style={{ fontSize: "1.4rem", color: "#475569", lineHeight: "1.4" }}>
-          <span>Based in {doctor.location}</span>
+          <span>QHT Clinic, {doctor.location}</span>
         </div>
       </div>
     </div>
