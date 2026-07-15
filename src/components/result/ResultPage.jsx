@@ -241,7 +241,8 @@ export default function ResultPage() {
                 arrows={resultTestimonialSlider}
                 testimonials={resultTestimonials}
               />
-              <ResultAddonsSection addOns={resultAddOns} />
+              {/* ResultAddonsSection hidden as per requirement */}
+              {/* <ResultAddonsSection addOns={resultAddOns} /> */}
               <ResultFaqSection faqs={resultFaqs} />
             </div>
 
