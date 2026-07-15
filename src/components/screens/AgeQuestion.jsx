@@ -1,45 +1,34 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import QuizHeader from "@/components/common/QuizHeader";
 import QuestionProgress from "@/components/common/QuestionProgress";
 import DoctorCapsule from "@/components/common/DoctorCapsule";
 import badgeIcon from "@/images/badge-icon.png";
 import lotusImage from "@/images/lotus.png";
-import male1Image from "@/images/male-1.png";
-import male2Image from "@/images/male-2.png";
-import male3Image from "@/images/male-3.png";
-import male4Image from "@/images/male-4.png";
-import male5Image from "@/images/male-5.png";
-import female1Image from "@/images/female-1.png";
-import female2Image from "@/images/female-2.png";
-import female3Image from "@/images/female-3.png";
-import female4Image from "@/images/female-4.png";
-import female5Image from "@/images/female-5.png";
-
-const ageRanges = ["18–24Y", "25–34Y", "35–44Y", "45–54Y", "55Y+"];
-
-const ageImagesByGender = {
-  male: [male1Image, male2Image, male3Image, male4Image, male5Image],
-  female: [
-    female1Image,
-    female2Image,
-    female3Image,
-    female4Image,
-    female5Image,
-  ],
-};
 
 export default function AgeQuestion({ gender }) {
+  const router = useRouter();
   const normalizedGender = gender === "female" ? "female" : "male";
+  const [age, setAge] = useState("");
+  const [error, setError] = useState("");
 
-  const options = ageRanges.map((label, index) => ({
-    id: label,
-    label,
-    image: ageImagesByGender[normalizedGender][index],
-    href: `/hair-problem/${normalizedGender}?age=${encodeURIComponent(label)}`,
-  }));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const ageNum = parseInt(age, 10);
+    if (!age || isNaN(ageNum) || ageNum < 1 || ageNum > 120) {
+      setError("Please enter a valid age (1-120)");
+      return;
+    }
+
+    // Save age values to sessionStorage
+    window.sessionStorage.setItem("urootsAge", String(ageNum));
+
+    // Redirect to the next step
+    router.push(`/hair-problem/${normalizedGender}?age=${ageNum}`, { scroll: false });
+  };
 
   return (
     <section className="screen-gradient-bg question-screen age-screen">
@@ -55,7 +44,7 @@ export default function AgeQuestion({ gender }) {
 
           <div className="question-screen__hero age-screen__hero">
             <h1 className="question-screen__title age-screen__title">
-              How old are you?
+              And your age?
             </h1>
 
             <Image
@@ -70,30 +59,35 @@ export default function AgeQuestion({ gender }) {
             </p>
           </div>
 
-          <ul className="age-options" aria-label="Age options">
-            {options.map((option) => {
-              return (
-                <li key={option.id} className="age-options__item">
-                  <Link
-                    href={option.href}
-                    className="age-card"
-                    onClick={() => {
-                      window.sessionStorage.setItem("urootsAge", option.label);
-                    }}
-                    scroll={false}
-                  >
-                    <Image
-                      src={option.image}
-                      alt=""
-                      aria-hidden="true"
-                      className="age-card__image"
-                    />
-                    <span className="age-card__label">{option.label}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <form onSubmit={handleSubmit} style={{ width: "100%", maxWidth: "45rem", margin: "0 auto 3rem" }}>
+            <div className="plan-field" style={{ marginBottom: "1.5rem" }}>
+              <input
+                type="number"
+                value={age}
+                onChange={(e) => {
+                  setAge(e.target.value);
+                  setError("");
+                }}
+                className="plan-field__control"
+                placeholder="Enter your age (years) *"
+                aria-label="Age input"
+                min="1"
+                max="120"
+                required
+                style={{ textAlign: "center", fontSize: "1.8rem" }}
+              />
+            </div>
+
+            {error && (
+              <p style={{ color: "#ef4444", fontSize: "1.4rem", textAlign: "center", margin: "-0.5rem 0 1.5rem" }}>
+                {error}
+              </p>
+            )}
+
+            <button type="submit" className="plan-submit" style={{ width: "100%" }}>
+              <span>Continue</span>
+            </button>
+          </form>
 
           <p className="question-screen__privacy-note age-screen__privacy-note">
             <Image
@@ -102,7 +96,7 @@ export default function AgeQuestion({ gender }) {
               aria-hidden="true"
               className="question-screen__privacy-icon"
             />
-            Your answer are private and secure.
+            Your answers are private and secure.
           </p>
         </div>
 

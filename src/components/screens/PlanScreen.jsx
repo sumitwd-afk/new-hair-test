@@ -98,10 +98,10 @@ export default function PlanScreen() {
 
           <div className="question-screen__hero plan-screen__hero">
             <p className="question-screen__intro plan-screen__intro">
-              Lets Get Started
+              First things first
             </p>
             <h1 className="question-screen__title plan-screen__title">
-              Where should we send it?
+              What should we call you?
             </h1>
 
             <Image
@@ -112,8 +112,8 @@ export default function PlanScreen() {
             />
 
             <p className="question-screen__copy plan-screen__copy">
-              We&apos;ll send your hair report on WhatsApp. No spam just{" "} 
-              <strong>your plan <br/> and a gentle check-in from QHT Clinic Doctors.</strong>
+              Where can we send your personalised report? <br/>
+              <strong>We will send your hair report on WhatsApp.</strong>
             </p>
           </div>
 

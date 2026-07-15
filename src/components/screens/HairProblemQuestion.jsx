@@ -75,7 +75,7 @@ export default function HairProblemQuestion({ gender }) {
     const ageVal = searchParams.get("age");
     if (ageVal) window.sessionStorage.setItem("urootsAge", ageVal);
     window.sessionStorage.setItem("urootsGender", normalizedGender);
-    router.push("/hair-type", { scroll: false });
+    router.push("/family", { scroll: false });
   };
 
   return (
@@ -87,12 +87,12 @@ export default function HairProblemQuestion({ gender }) {
           <QuestionProgress
             className="question-screen__progress"
             progress={40}
-            questionLabel="Question 4 of 10"
+            questionLabel="Question 5 of 15"
           />
 
           <div className="question-screen__hero hair-problem-screen__hero">
             <h1 className="question-screen__title hair-problem-screen__title">
-              What&apos;s bothering you most?
+              Which of these stages looks closest to your current pattern?
             </h1>
 
             <Image

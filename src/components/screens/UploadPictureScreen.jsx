@@ -13,7 +13,7 @@ import blackArrowIcon from "@/images/black-arrow.png";
 import whiteArrowIcon from "@/images/white-arrow.png";
 import { compressImage, submitFullLead } from "@/utils/quizHelper";
 
-const MAX_FILES = 5;
+const MAX_FILES = 1;
 const MAX_SIZE_BYTES = 1 * 1024 * 1024; // 1 MB
 
 export default function UploadPictureScreen() {
@@ -183,12 +183,12 @@ export default function UploadPictureScreen() {
           <QuestionProgress
             className="question-screen__progress"
             progress={100}
-            questionLabel="Question 10 of 10"
+            questionLabel="Question 16 of 16"
           />
 
           <div className="question-screen__hero upload-screen__hero">
             <h1 className="question-screen__title upload-screen__title">
-              Upload your scalp picture?
+              Last step — share a clear photo of your scalp.
             </h1>
             <Image
               src={lotusImage}
@@ -209,7 +209,7 @@ export default function UploadPictureScreen() {
           </div>
 
           <p className="upload-screen__note">
-            You can upload up to {MAX_FILES} photos — top, front, side views help us analyse better.
+            Single image upload (1 photo only)
           </p>
 
           {/* Hidden file inputs */}

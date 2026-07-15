@@ -50,7 +50,7 @@ export default function GenderQuestion() {
           <div className="question-screen__hero">
             <p className="question-screen__eyebrow">Question 2 of 10</p>
             <h2 className="question-screen__intro">Let&apos;s Start Simple.</h2>
-            <h1 className="question-screen__title">What is Your Gender?</h1>
+            <h1 className="question-screen__title">Which best describes you?</h1>
 
             <Image
               src={lotusImage}
