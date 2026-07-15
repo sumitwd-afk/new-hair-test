@@ -48,8 +48,8 @@ export default function ConditionsQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={62.5}
-            questionLabel="Question 11 of 16"
+            progress={70.58}
+            questionLabel="Question 12 of 17"
           />
 
           <div className="question-screen__hero">

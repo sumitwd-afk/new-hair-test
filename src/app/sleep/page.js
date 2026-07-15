@@ -33,8 +33,8 @@ export default function SleepQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={50}
-            questionLabel="Question 9 of 16"
+            progress={58.82}
+            questionLabel="Question 10 of 17"
           />
 
           <div className="question-screen__hero">

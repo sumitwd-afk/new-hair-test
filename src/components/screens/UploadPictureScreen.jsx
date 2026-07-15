@@ -183,7 +183,7 @@ export default function UploadPictureScreen() {
           <QuestionProgress
             className="question-screen__progress"
             progress={100}
-            questionLabel="Question 16 of 16"
+            questionLabel="Question 17 of 17"
           />
 
           <div className="question-screen__hero upload-screen__hero">

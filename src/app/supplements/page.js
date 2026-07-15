@@ -32,8 +32,8 @@ export default function SupplementsQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={87.5}
-            questionLabel="Question 15 of 16"
+            progress={94.11}
+            questionLabel="Question 16 of 17"
           />
 
           <div className="question-screen__hero">

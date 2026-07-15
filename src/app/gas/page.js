@@ -33,8 +33,8 @@ export default function GasQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={75}
-            questionLabel="Question 13 of 16"
+            progress={82.35}
+            questionLabel="Question 14 of 17"
           />
 
           <div className="question-screen__hero">

@@ -38,7 +38,7 @@ export default function AgeQuestion({ gender }) {
     id: label,
     label,
     image: ageImagesByGender[normalizedGender][index],
-    href: `/hair-problem/${normalizedGender}?age=${encodeURIComponent(label)}`,
+    href: `/city?age=${encodeURIComponent(label)}`,
   }));
 
   return (
@@ -49,8 +49,8 @@ export default function AgeQuestion({ gender }) {
         <div className="question-screen__content age-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={18.75}
-            questionLabel="Question 4 of 16"
+            progress={23.53}
+            questionLabel="Question 4 of 17"
           />
 
           <div className="question-screen__hero age-screen__hero">

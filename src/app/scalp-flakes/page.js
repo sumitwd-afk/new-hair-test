@@ -34,8 +34,8 @@ export default function ScalpFlakesQuestion() {
         <div className="question-screen__content">
           <QuestionProgress
             className="question-screen__progress"
-            progress={43.75}
-            questionLabel="Question 8 of 16"
+            progress={52.94}
+            questionLabel="Question 9 of 17"
           />
 
           <div className="question-screen__hero">
