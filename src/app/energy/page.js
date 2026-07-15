@@ -52,11 +52,11 @@ export default function EnergyQuestion() {
             />
           </div>
 
-          <ul className="gender-options" aria-label="Energy options">
+          <ul className="gender-options" aria-label="Energy options" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "3rem", margin: "4.8rem auto 0", maxWidth: "100rem" }}>
             {options.map((option) => {
               const isSelected = selected === option.id;
               return (
-                <li key={option.id} className="gender-options__item">
+                <li key={option.id} className="gender-options__item" style={{ flex: "0 1 calc(33.333% - 2rem)", minWidth: "26rem" }}>
                   <button
                     type="button"
                     className={`gender-card${isSelected ? " is-selected" : ""}`}
