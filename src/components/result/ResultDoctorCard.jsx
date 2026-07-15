@@ -31,15 +31,12 @@ export default function ResultDoctorCard({ doctor }) {
         marginTop: "1rem"
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", fontSize: "1.4rem", color: "#334155" }}>
-          <span style={{ fontSize: "1.6rem" }}>🎓</span>
           <strong>{doctor.degree}</strong>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", fontSize: "1.4rem", color: "#475569" }}>
-          <span style={{ fontSize: "1.6rem" }}>💼</span>
           <span>{doctor.experience} Experience</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", fontSize: "1.4rem", color: "#475569" }}>
-          <span style={{ fontSize: "1.6rem" }}>📍</span>
           <span>Based in {doctor.location}</span>
         </div>
       </div>

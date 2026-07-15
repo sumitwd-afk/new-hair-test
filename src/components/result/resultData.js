@@ -43,10 +43,10 @@ export const resultOverview = {
     badgeIcon: greenTickIcon,
     badgeLabel: "Expert advice",
     name: "Dr. Neha",
-    role: "Dermatologist",
-    degree: "MD (Dermatology)",
+    role: "Facial Aesthetic & Hair Transplant Surgeon",
+    degree: "MDS (Oral & Maxillofacial Surgery)",
     experience: "~10 Years",
-    location: "Delhi",
+    location: "Gurgaon",
     description:
       "Clinical specialist in personalized hair restoration, follicle rejuvenation, and advanced scalp treatments.",
   },
