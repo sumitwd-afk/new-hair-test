@@ -42,18 +42,6 @@ function YouTubeCard({ testimonial }) {
           </>
         )}
       </div>
-
-      <div className="text-box">
-        <p>{quote}</p>
-      </div>
-
-      <div className="info-box">
-        <div className="left-box">
-          <h4>{name}</h4>
-          <span>{age}</span>
-        </div>
-        <span className="month-capsule">{label}</span>
-      </div>
     </article>
   );
 }
