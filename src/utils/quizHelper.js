@@ -6,100 +6,100 @@ export const API_ENDPOINT = "https://api.theuroots.com/api/lead";
 
 export const PRODUCTS = {
   'minbur-5f': {
-    name: 'MINBUR-5F+',
+    name: 'URoots 5F+ Daily Scalp Care Solution',
     price: 899,
-    variantId: '47948889489650',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard_1_398b897e-06d0-4f59-9bc2-6198fe802a6b.jpg?v=1760611479',
-    url: 'https://theuroots.com/products/minbur-5f',
-    description: 'Minoxidil 5% + Finasteride topical solution'
+    variantId: '49691405943026',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_2e32c442-2c8f-469e-8304-b81a15c9ef77.webp?v=1783743174',
+    url: 'https://theuroots.com/products/uroots-5f-daily-scalp-care-solution',
+    description: 'Daily scalp care solution for hair wellness'
   },
   'minbur-10f': {
-    name: 'MINBUR-10F+',
-    price: 1099,
-    variantId: '48392555757810',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard1_fa678f6a-ce87-4e0a-a0e6-e332d56e3d10.jpg?v=1764419797',
-    url: 'https://theuroots.com/products/minbur-10f',
-    description: 'Minoxidil 10% + Finasteride topical solution'
+    name: 'URoots 5F+ Daily Scalp Care Solution',
+    price: 899,
+    variantId: '49691405943026',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_2e32c442-2c8f-469e-8304-b81a15c9ef77.webp?v=1783743174',
+    url: 'https://theuroots.com/products/uroots-5f-daily-scalp-care-solution',
+    description: 'Daily scalp care solution for hair wellness'
   },
   'growbald': {
-    name: 'Growbald',
+    name: 'URoots Hair Supplement',
     price: 699,
-    variantId: '47573822505202',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/growbald-nutraceutical-multivitamin-beta-sitosterol-men..jpg?v=1762505728',
-    url: 'https://theuroots.com/products/growbald',
-    description: 'Multivitamin with Beta Sitosterol for hair growth'
+    variantId: '49240873074930',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_4e3b858d-5a27-4826-8067-de452dbbabf5.webp?v=1782832126',
+    url: 'https://theuroots.com/products/uroots-hair-supplement',
+    description: 'Hair supplement with Beta Sitosterol for men'
   },
   'growbald-eva': {
-    name: 'Growbald Eva Women',
+    name: 'URoots Hair Supplement',
     price: 699,
-    variantId: '48263594344690',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard1_99c89efe-9b03-496d-9671-d659c1ea002e.jpg?v=1764073442',
-    url: 'https://theuroots.com/products/growbald-eva-women-special',
-    description: 'Multivitamin specially formulated for women'
+    variantId: '49240873074930',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_4e3b858d-5a27-4826-8067-de452dbbabf5.webp?v=1782832126',
+    url: 'https://theuroots.com/products/uroots-hair-supplement',
+    description: 'Hair supplement for women'
   },
   'venfoll': {
-    name: 'Venfoll Hair Serum',
+    name: 'URoots Hair Serum',
     price: 1199,
-    variantId: '47573820211442',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard1_85039acc-a094-4652-9457-3d4e33c4d8d8.jpg?v=1760617466',
-    url: 'https://theuroots.com/products/venfoll-hair-serum',
+    variantId: '49240867045618',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_1ea3fe27-8d45-4014-86c9-a94195b53d93.webp?v=1782833030',
+    url: 'https://theuroots.com/products/uroots-hair-serum-for-fuller-looking-hair-daily-scalp-care',
     description: 'Advanced hair serum for thickness & volume'
   },
   'kalen-d3': {
-    name: 'Vitamin D3',
-    price: 299,
-    variantId: '48049134665970',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard1_690484e6-db68-45a7-9231-b9d97bc98f58.jpg?v=1760618436',
-    url: 'https://theuroots.com/products/gemline-d3',
-    description: 'Vitamin D3 supplement for hair health'
+    name: 'URoots Finasteride Tablets 1mg',
+    price: 240,
+    variantId: '49240872583410',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_670f0685-5d7b-426b-9349-09784bb90a55.webp?v=1782821869',
+    url: 'https://theuroots.com/products/uroots-finasteride-tablets-ip-1mg',
+    description: 'Finasteride 1mg tablets for men (prescription)'
   },
   'xtend-kz': {
-    name: 'Xtend KZ Shampoo',
-    price: 199,
-    variantId: '47573819261170',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard1_f3a0f6b0-f3b0-4194-9b6f-07729b536487.jpg?v=1760618053',
-    url: 'https://theuroots.com/products/xtend-kz-shampoo',
-    description: 'Anti-dandruff ketoconazole shampoo'
+    name: 'URoots Daily Hydrating Shampoo',
+    price: 249,
+    variantId: '49691413283058',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_2462a14a-db1b-4418-9bee-1397054e8855.webp?v=1783743082',
+    url: 'https://theuroots.com/products/uroots-daily-hydrating-shampoo-for-men-women',
+    description: 'Daily hydrating shampoo for men & women'
   },
   'xtend-max': {
-    name: 'Xtend Max 5%',
-    price: 799,
-    variantId: '47573822243058',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard_1_1422e892-87ef-48e4-8b4a-276cf7811041.jpg?v=1760617096',
-    url: 'https://theuroots.com/products/xtend-max',
-    description: 'Minoxidil 5% solution for hair regrowth'
+    name: 'URoots Daily Hydrating Shampoo',
+    price: 249,
+    variantId: '49691413283058',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_2462a14a-db1b-4418-9bee-1397054e8855.webp?v=1783743082',
+    url: 'https://theuroots.com/products/uroots-daily-hydrating-shampoo-for-men-women',
+    description: 'Daily hydrating shampoo for men & women'
   },
   'moisthair-shampoo': {
-    name: 'Moisthair Shampoo',
-    price: 349,
-    variantId: '47636376158450',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/Artboard_1_a5843679-3946-4ccf-80e6-0637ee9851e4.jpg?v=1760612687',
-    url: 'https://theuroots.com/products/moisthair-shampoo',
-    description: 'Gentle moisturizing shampoo for daily use'
+    name: 'URoots Daily Hydrating Shampoo',
+    price: 249,
+    variantId: '49691413283058',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_2462a14a-db1b-4418-9bee-1397054e8855.webp?v=1783743082',
+    url: 'https://theuroots.com/products/uroots-daily-hydrating-shampoo-for-men-women',
+    description: 'Daily hydrating shampoo for men & women'
   },
   'gentle-gut': {
-    name: 'Gentle Gut',
-    price: 499,
-    variantId: '48665368101106',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/01_d847c4b7-e0a9-4ca5-b5e4-55c3cb2193be.jpg?v=1768902046',
-    url: 'https://theuroots.com/products/gentle-gut',
-    description: 'Gut health supplement for better nutrient absorption'
+    name: 'URoots Hair Supplement',
+    price: 699,
+    variantId: '49240873074930',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_4e3b858d-5a27-4826-8067-de452dbbabf5.webp?v=1782832126',
+    url: 'https://theuroots.com/products/uroots-hair-supplement',
+    description: 'Hair supplement for gut & overall wellness'
   },
   'calm-mind': {
-    name: 'Calm Mind',
-    price: 499,
-    variantId: '48665443107058',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/01_87862ced-057b-4494-b1e8-b7cbcc8ff180.jpg?v=1768901860',
-    url: 'https://theuroots.com/products/calm-mind',
-    description: 'Stress relief supplement for mental wellness'
+    name: 'URoots Hair Serum',
+    price: 1199,
+    variantId: '49240867045618',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_1ea3fe27-8d45-4014-86c9-a94195b53d93.webp?v=1782833030',
+    url: 'https://theuroots.com/products/uroots-hair-serum-for-fuller-looking-hair-daily-scalp-care',
+    description: 'Hair serum for stress-related hair loss'
   },
   'pure-scalp-oil': {
-    name: 'Pure Scalp Oil',
-    price: 399,
-    variantId: '48665399886066',
-    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/01_3a11b1a6-7cd2-419c-b5c7-79b4ce1b218a.jpg?v=1768901970',
-    url: 'https://theuroots.com/products/pure-scalp-oil',
-    description: 'Nourishing scalp oil for healthy hair roots'
+    name: 'URoots Hair Serum',
+    price: 1199,
+    variantId: '49240867045618',
+    image: 'https://cdn.shopify.com/s/files/1/0757/6554/7250/files/1_1ea3fe27-8d45-4014-86c9-a94195b53d93.webp?v=1782833030',
+    url: 'https://theuroots.com/products/uroots-hair-serum-for-fuller-looking-hair-daily-scalp-care',
+    description: 'Hair serum for scalp nourishment'
   }
 };
 
