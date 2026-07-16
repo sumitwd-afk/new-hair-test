@@ -107,7 +107,7 @@ export default function UploadPictureScreen() {
       const planDetailsStr = window.sessionStorage.getItem("urootsPlanDetails") || "{}";
       const planDetails = JSON.parse(planDetailsStr);
 
-      const formData = {
+       const formData = {
         firstName: planDetails.firstName || "",
         countryCode: planDetails.countryCode || "+91",
         phone: planDetails.phone || "",
@@ -120,6 +120,17 @@ export default function UploadPictureScreen() {
         lifestyle: JSON.parse(window.sessionStorage.getItem("urootsLifestyle") || "[]"),
         tried: window.sessionStorage.getItem("urootsTried") || "",
         expectation: window.sessionStorage.getItem("urootsExpectation") || "",
+        // New Assessment fields
+        familyHistory: window.sessionStorage.getItem("urootsFamilyHistory") || "",
+        triggers: window.sessionStorage.getItem("urootsTriggers") || "",
+        scalpFlaking: window.sessionStorage.getItem("urootsScalpFlaking") || "",
+        sleepPattern: window.sessionStorage.getItem("urootsSleepPattern") || "",
+        stressLevel: window.sessionStorage.getItem("urootsStressLevel") || "",
+        healthConditions: window.sessionStorage.getItem("urootsHealthConditions") || "",
+        bowelMovements: window.sessionStorage.getItem("urootsBowelMovements") || "",
+        acidityBloating: window.sessionStorage.getItem("urootsAcidityBloating") || "",
+        energyLevels: window.sessionStorage.getItem("urootsEnergyLevels") || "",
+        takingSupplements: window.sessionStorage.getItem("urootsTakingSupplements") || "",
       };
 
       let compressedFiles = null;

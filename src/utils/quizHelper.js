@@ -465,6 +465,38 @@ export async function submitFullLead(formData, file = null) {
     payload.push({ Attribute: "mx_Treatment_Goal", Value: formData.expectation });
   }
 
+  // Map new assessment questionnaire results to Suggested LSQ Schema fields from URoots_Hair_Test_Quiz_Reworded (1).xlsx
+  if (formData.familyHistory) {
+    payload.push({ Attribute: "mx_Family_History", Value: formData.familyHistory });
+  }
+  if (formData.triggers) {
+    payload.push({ Attribute: "mx_Recent_Health_Events", Value: formData.triggers });
+  }
+  if (formData.scalpFlaking) {
+    payload.push({ Attribute: "mx_Scalp_Condition", Value: formData.scalpFlaking });
+  }
+  if (formData.sleepPattern) {
+    payload.push({ Attribute: "mx_Sleep_Quality", Value: formData.sleepPattern });
+  }
+  if (formData.stressLevel) {
+    payload.push({ Attribute: "mx_Stress_Level", Value: formData.stressLevel });
+  }
+  if (formData.healthConditions) {
+    payload.push({ Attribute: "mx_Health_Conditions", Value: formData.healthConditions });
+  }
+  if (formData.bowelMovements) {
+    payload.push({ Attribute: "mx_Bowel_Regularity", Value: formData.bowelMovements });
+  }
+  if (formData.acidityBloating) {
+    payload.push({ Attribute: "mx_Gut_Discomfort", Value: formData.acidityBloating });
+  }
+  if (formData.energyLevels) {
+    payload.push({ Attribute: "mx_Energy_Levels", Value: formData.energyLevels });
+  }
+  if (formData.takingSupplements) {
+    payload.push({ Attribute: "mx_Current_Supplements", Value: formData.takingSupplements });
+  }
+
   payload.push(
     { Attribute: "mx_Brand", Value: "URoots" },
     { Attribute: "mx_NDR_Reason", Value: "URoots" },
