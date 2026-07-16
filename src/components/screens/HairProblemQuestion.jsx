@@ -90,12 +90,12 @@ export default function HairProblemQuestion({ gender }) {
             </p>
           </div>
 
-          <ul className="hair-problem-options" aria-label="Hair concerns">
+          <ul className="hair-problem-options" aria-label="Hair concerns" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "2rem", maxWidth: "90rem", margin: "3rem auto 0" }}>
             {options.map((option) => {
               const isSelected = selectedConcerns.includes(option.id);
 
               return (
-                <li key={option.id} className="hair-problem-options__item">
+                <li key={option.id} className="hair-problem-options__item" style={{ flex: "0 1 calc(25% - 2rem)", minWidth: "22rem" }}>
                   <button
                     type="button"
                     className={`hair-problem-card${isSelected ? " is-selected" : ""}`}
