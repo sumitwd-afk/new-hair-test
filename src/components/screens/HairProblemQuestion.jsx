@@ -8,25 +8,32 @@ import QuestionProgress from "@/components/common/QuestionProgress";
 import DoctorCapsule from "@/components/common/DoctorCapsule";
 import badgeIcon from "@/images/badge-icon.png";
 import lotusImage from "@/images/lotus.png";
+
+// Male Stage images (from root folder)
+import stage1Image from "@/images/Stage1.png";
+import stage2Image from "@/images/Stage2.png";
+import stage3Image from "@/images/Stage3.png";
+import stage4Image from "@/images/Stage4.png";
+import stage5Image from "@/images/Stage5.png";
+import stage6Image from "@/images/Stage6.png";
+
+// Female concern images (existing)
 import hairFallImage from "@/images/hair-fall.png";
-import thinningImage from "@/images/thinning.png";
-import hairlineImage from "@/images/hairline.png";
+import femaleHairThinningImage from "@/images/female-hair-thinning.png";
+import partumHairLossImage from "@/images/partum-hair-loss.png";
 import dandruffImage from "@/images/dandruff.png";
 import dullImage from "@/images/dull.png";
 import slowGrowthImage from "@/images/slow-growth.png";
 import greyingImage from "@/images/greying.png";
-import femaleHairThinningImage from "@/images/female-hair-thinning.png";
-import partumHairLossImage from "@/images/partum-hair-loss.png";
 
 const concernOptionsByGender = {
   male: [
-    { id: "hair-fall", label: "Hair fall", image: hairFallImage },
-    { id: "thinning", label: "Thinning", image: thinningImage },
-    { id: "hairline", label: "Receding hairline", image: hairlineImage },
-    { id: "dandruff", label: "Dandruff", image: dandruffImage },
-    { id: "dull", label: "Dull, lifeless hair", image: dullImage },
-    { id: "slow-growth", label: "Slow growth", image: slowGrowthImage },
-    { id: "greying", label: "Premature greying", image: greyingImage },
+    { id: "stage-1", label: "Stage 1", image: stage1Image },
+    { id: "stage-2", label: "Stage 2", image: stage2Image },
+    { id: "stage-3", label: "Stage 3", image: stage3Image },
+    { id: "stage-4", label: "Stage 4", image: stage4Image },
+    { id: "stage-5", label: "Stage 5", image: stage5Image },
+    { id: "stage-6", label: "Stage 6", image: stage6Image },
   ],
   female: [
     { id: "hair-fall", label: "Hair fall", image: hairFallImage },
@@ -57,13 +64,30 @@ export default function HairProblemQuestion({ gender }) {
   const options = concernOptionsByGender[normalizedGender];
 
   const handleSelectConcern = (id) => {
-    setSelectedConcerns((prev) => {
-      if (prev.includes(id)) {
-        return prev.filter((c) => c !== id);
+    if (normalizedGender === "male") {
+      // Single choice for male
+      setSelectedConcerns([id]);
+      const matched = options.find((o) => o.id === id);
+      if (matched) {
+        window.sessionStorage.setItem("urootsPattern", matched.label);
       }
-      if (prev.length >= MAX_CONCERNS) return prev;
-      return [...prev, id];
-    });
+      
+      const ageVal = searchParams.get("age");
+      if (ageVal) window.sessionStorage.setItem("urootsAge", ageVal);
+      window.sessionStorage.setItem("urootsGender", normalizedGender);
+      
+      // Auto redirect to family history
+      router.push("/family", { scroll: false });
+    } else {
+      // Multi-select for female
+      setSelectedConcerns((prev) => {
+        if (prev.includes(id)) {
+          return prev.filter((c) => c !== id);
+        }
+        if (prev.length >= MAX_CONCERNS) return prev;
+        return [...prev, id];
+      });
+    }
   };
 
   const handleNext = () => {
@@ -103,8 +127,11 @@ export default function HairProblemQuestion({ gender }) {
             />
 
             <p className="question-screen__copy hair-problem-screen__copy">
-              <strong>(Pick up to 3)</strong> This helps us understand your hair
-              better.
+              {normalizedGender === "female" ? (
+                <><strong>(Pick up to 3)</strong> This helps us understand your hair better.</>
+              ) : (
+                <>This helps us understand your hair better.</>
+              )}
             </p>
           </div>
 
@@ -112,7 +139,9 @@ export default function HairProblemQuestion({ gender }) {
             {options.map((option) => {
               const isSelected = selectedConcerns.includes(option.id);
               const isDisabled =
-                !isSelected && selectedConcerns.length >= MAX_CONCERNS;
+                normalizedGender === "female" &&
+                !isSelected &&
+                selectedConcerns.length >= MAX_CONCERNS;
 
               return (
                 <li key={option.id} className="hair-problem-options__item">
@@ -138,16 +167,18 @@ export default function HairProblemQuestion({ gender }) {
             })}
           </ul>
 
-          <div className="question-screen__next-wrap">
-            <button
-              type="button"
-              className="question-screen__next-btn"
-              onClick={handleNext}
-              disabled={selectedConcerns.length === 0}
-            >
-              Next
-            </button>
-          </div>
+          {normalizedGender === "female" && (
+            <div className="question-screen__next-wrap">
+              <button
+                type="button"
+                className="question-screen__next-btn"
+                onClick={handleNext}
+                disabled={selectedConcerns.length === 0}
+              >
+                Next
+              </button>
+            </div>
+          )}
 
           <p className="question-screen__privacy-note hair-problem-screen__privacy-note">
             <Image
@@ -156,7 +187,7 @@ export default function HairProblemQuestion({ gender }) {
               aria-hidden="true"
               className="question-screen__privacy-icon"
             />
-            Your answer are private &amp; secure.
+            Your answers are private and secure.
           </p>
         </div>
 
