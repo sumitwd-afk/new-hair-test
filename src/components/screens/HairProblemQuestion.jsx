@@ -9,7 +9,7 @@ import DoctorCapsule from "@/components/common/DoctorCapsule";
 import badgeIcon from "@/images/badge-icon.png";
 import lotusImage from "@/images/lotus.png";
 
-// Male Stage images (from root folder)
+// Male Stage images
 import stage1Image from "@/images/Stage1.png";
 import stage2Image from "@/images/Stage2.png";
 import stage3Image from "@/images/Stage3.png";
@@ -17,14 +17,10 @@ import stage4Image from "@/images/Stage4.png";
 import stage5Image from "@/images/Stage5.png";
 import stage6Image from "@/images/Stage6.png";
 
-// Female concern images (existing)
-import hairFallImage from "@/images/hair-fall.png";
-import femaleHairThinningImage from "@/images/female-hair-thinning.png";
-import partumHairLossImage from "@/images/partum-hair-loss.png";
-import dandruffImage from "@/images/dandruff.png";
-import dullImage from "@/images/dull.png";
-import slowGrowthImage from "@/images/slow-growth.png";
-import greyingImage from "@/images/greying.png";
+// Female Stage images
+import femaleStage1Image from "@/images/female Stage 1.png";
+import femaleStage2Image from "@/images/female Stage 2.png";
+import femaleStage3Image from "@/images/female Stage 3.png";
 
 const concernOptionsByGender = {
   male: [
@@ -36,25 +32,11 @@ const concernOptionsByGender = {
     { id: "stage-6", label: "Stage 6", image: stage6Image },
   ],
   female: [
-    { id: "hair-fall", label: "Hair fall", image: hairFallImage },
-    {
-      id: "female-hair-thinning",
-      label: "Thinning / widening partition",
-      image: femaleHairThinningImage,
-    },
-    {
-      id: "partum-hair-loss",
-      label: "Post-partum hair loss",
-      image: partumHairLossImage,
-    },
-    { id: "dandruff", label: "Dandruff", image: dandruffImage },
-    { id: "dull", label: "Dull, lifeless hair", image: dullImage },
-    { id: "slow-growth", label: "Slow growth", image: slowGrowthImage },
-    { id: "greying", label: "Premature greying", image: greyingImage },
+    { id: "female-stage-1", label: "Stage 1", image: femaleStage1Image },
+    { id: "female-stage-2", label: "Stage 2", image: femaleStage2Image },
+    { id: "female-stage-3", label: "Stage 3", image: femaleStage3Image },
   ],
 };
-
-const MAX_CONCERNS = 3;
 
 export default function HairProblemQuestion({ gender }) {
   const [selectedConcerns, setSelectedConcerns] = useState([]);
@@ -64,41 +46,18 @@ export default function HairProblemQuestion({ gender }) {
   const options = concernOptionsByGender[normalizedGender];
 
   const handleSelectConcern = (id) => {
-    if (normalizedGender === "male") {
-      // Single choice for male
-      setSelectedConcerns([id]);
-      const matched = options.find((o) => o.id === id);
-      if (matched) {
-        window.sessionStorage.setItem("urootsPattern", matched.label);
-      }
-      
-      const ageVal = searchParams.get("age");
-      if (ageVal) window.sessionStorage.setItem("urootsAge", ageVal);
-      window.sessionStorage.setItem("urootsGender", normalizedGender);
-      
-      // Auto redirect to family history
-      router.push("/family", { scroll: false });
-    } else {
-      // Multi-select for female
-      setSelectedConcerns((prev) => {
-        if (prev.includes(id)) {
-          return prev.filter((c) => c !== id);
-        }
-        if (prev.length >= MAX_CONCERNS) return prev;
-        return [...prev, id];
-      });
+    // Single choice selection for both male and female
+    setSelectedConcerns([id]);
+    const matched = options.find((o) => o.id === id);
+    if (matched) {
+      window.sessionStorage.setItem("urootsPattern", matched.label);
     }
-  };
-
-  const handleNext = () => {
-    if (selectedConcerns.length === 0) return;
-    const labels = selectedConcerns
-      .map((id) => options.find((o) => o.id === id)?.label)
-      .filter(Boolean);
-    window.sessionStorage.setItem("urootsPattern", labels.join(", "));
+    
     const ageVal = searchParams.get("age");
     if (ageVal) window.sessionStorage.setItem("urootsAge", ageVal);
     window.sessionStorage.setItem("urootsGender", normalizedGender);
+    
+    // Auto redirect to family history step
     router.push("/family", { scroll: false });
   };
 
@@ -127,30 +86,21 @@ export default function HairProblemQuestion({ gender }) {
             />
 
             <p className="question-screen__copy hair-problem-screen__copy">
-              {normalizedGender === "female" ? (
-                <><strong>(Pick up to 3)</strong> This helps us understand your hair better.</>
-              ) : (
-                <>This helps us understand your hair better.</>
-              )}
+              This helps us understand your hair better.
             </p>
           </div>
 
           <ul className="hair-problem-options" aria-label="Hair concerns">
             {options.map((option) => {
               const isSelected = selectedConcerns.includes(option.id);
-              const isDisabled =
-                normalizedGender === "female" &&
-                !isSelected &&
-                selectedConcerns.length >= MAX_CONCERNS;
 
               return (
                 <li key={option.id} className="hair-problem-options__item">
                   <button
                     type="button"
-                    className={`hair-problem-card${isSelected ? " is-selected" : ""}${isDisabled ? " is-disabled" : ""}`}
+                    className={`hair-problem-card${isSelected ? " is-selected" : ""}`}
                     onClick={() => handleSelectConcern(option.id)}
                     aria-pressed={isSelected}
-                    disabled={isDisabled}
                   >
                     <Image
                       src={option.image}
@@ -166,19 +116,6 @@ export default function HairProblemQuestion({ gender }) {
               );
             })}
           </ul>
-
-          {normalizedGender === "female" && (
-            <div className="question-screen__next-wrap">
-              <button
-                type="button"
-                className="question-screen__next-btn"
-                onClick={handleNext}
-                disabled={selectedConcerns.length === 0}
-              >
-                Next
-              </button>
-            </div>
-          )}
 
           <p className="question-screen__privacy-note hair-problem-screen__privacy-note">
             <Image
