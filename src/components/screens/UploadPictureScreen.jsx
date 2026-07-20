@@ -144,7 +144,7 @@ export default function UploadPictureScreen() {
       }
 
       await submitFullLead(formData, compressedFiles);
-      router.push("/result", { scroll: false });
+      router.push("/result");
     } catch (err) {
       console.error("Submission failed:", err);
       alert("Something went wrong during submission. Please try again.");
