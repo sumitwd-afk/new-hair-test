@@ -12,7 +12,7 @@ export default function DoctorCapsule({ className = "" }) {
       />
       <div className="doctor-capsule__copy">
         <p>Reviewed by</p>
-        <strong>QHT Clinic Doctors</strong>
+        <strong>QHT Clinic Doctors Team</strong>
       </div>
     </aside>
   );
