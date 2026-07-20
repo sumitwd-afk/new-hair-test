@@ -28,7 +28,10 @@ export default function ResultPage() {
 
   useEffect(() => {
     if (!loading && typeof window !== "undefined") {
-      window.scrollTo(0, 0);
+      const timer = setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 150);
+      return () => clearTimeout(timer);
     }
   }, [loading]);
 
