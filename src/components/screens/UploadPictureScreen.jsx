@@ -144,6 +144,9 @@ export default function UploadPictureScreen() {
       }
 
       await submitFullLead(formData, compressedFiles);
+      if (typeof window !== "undefined") {
+        window.scrollTo(0, 0);
+      }
       router.push("/result");
     } catch (err) {
       console.error("Submission failed:", err);
