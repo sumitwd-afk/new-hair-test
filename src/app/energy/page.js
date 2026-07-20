@@ -24,7 +24,7 @@ export default function EnergyQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsEnergyLevels", label);
-    router.push("/supplements", { scroll: false });
+    router.push("/supplements");
   };
 
   return (

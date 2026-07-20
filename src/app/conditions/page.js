@@ -37,7 +37,7 @@ export default function ConditionsQuestion() {
     if (selected.length === 0) return;
     const labels = selected.map((id) => options.find((o) => o.id === id).label);
     window.sessionStorage.setItem("urootsHealthConditions", labels.join(", "));
-    router.push("/bowel", { scroll: false });
+    router.push("/bowel");
   };
 
   return (

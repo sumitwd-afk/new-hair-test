@@ -28,30 +28,9 @@ export default function ResultPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'manual';
-      }
+      window.scrollTo(0, 0);
     }
-
-    if (!loading && typeof window !== "undefined") {
-      // Force scroll to top at short intervals for the first 1000ms
-      // to fight off browser scroll restoration, Next.js router offsets, and late image rendering height shifts
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      
-      const interval = setInterval(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      }, 50);
-
-      const timer = setTimeout(() => {
-        clearInterval(interval);
-      }, 1000);
-
-      return () => {
-        clearInterval(interval);
-        clearTimeout(timer);
-      };
-    }
-  }, [loading]);
+  }, []);
 
   useEffect(() => {
     // 1. Load details from sessionStorage

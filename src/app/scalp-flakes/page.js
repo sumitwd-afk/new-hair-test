@@ -23,7 +23,7 @@ export default function ScalpFlakesQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsScalpFlaking", label);
-    router.push("/sleep", { scroll: false });
+    router.push("/sleep");
   };
 
   return (

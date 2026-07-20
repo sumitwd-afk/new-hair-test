@@ -23,7 +23,7 @@ export default function StressQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsStressLevel", label);
-    router.push("/conditions", { scroll: false });
+    router.push("/conditions");
   };
 
   return (

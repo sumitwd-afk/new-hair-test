@@ -22,7 +22,7 @@ export default function GasQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsAcidityBloating", label);
-    router.push("/energy", { scroll: false });
+    router.push("/energy");
   };
 
   return (

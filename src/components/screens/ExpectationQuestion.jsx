@@ -26,7 +26,7 @@ export default function ExpectationQuestion() {
     if (option) {
       window.sessionStorage.setItem("urootsExpectation", option.label);
     }
-    router.push("/upload-picture", { scroll: false });
+    router.push("/upload-picture");
   };
 
   return (

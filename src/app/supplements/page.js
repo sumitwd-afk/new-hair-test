@@ -21,7 +21,7 @@ export default function SupplementsQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsTakingSupplements", label);
-    router.push("/upload-picture", { scroll: false });
+    router.push("/upload-picture");
   };
 
   return (

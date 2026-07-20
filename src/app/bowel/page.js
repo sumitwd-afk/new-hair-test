@@ -23,7 +23,7 @@ export default function BowelQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsBowelMovements", label);
-    router.push("/gas", { scroll: false });
+    router.push("/gas");
   };
 
   return (

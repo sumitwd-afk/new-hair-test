@@ -109,7 +109,7 @@ export default function LifestyleQuestion({ gender }) {
   const handleNext = () => {
     if (selectedOptions.length === 0) return;
     window.sessionStorage.setItem("urootsLifestyle", JSON.stringify(selectedOptions));
-    router.push("/tried", { scroll: false });
+    router.push("/tried");
   };
 
   return (

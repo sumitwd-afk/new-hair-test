@@ -62,7 +62,7 @@ export default function CityQuestion() {
     };
 
     window.sessionStorage.setItem("urootsPlanDetails", JSON.stringify(updatedDetails));
-    router.push(`/hair-problem/${gender}`, { scroll: false });
+    router.push(`/hair-problem/${gender}`);
   };
 
   return (

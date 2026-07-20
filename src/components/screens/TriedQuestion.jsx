@@ -78,7 +78,7 @@ export default function TriedQuestion() {
       .map((id) => triedOptions.find((o) => o.id === id)?.label)
       .filter(Boolean);
     window.sessionStorage.setItem("urootsTried", labels.join(", "));
-    router.push("/expectation", { scroll: false });
+    router.push("/expectation");
   };
 
   return (

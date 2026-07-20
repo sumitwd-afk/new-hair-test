@@ -29,7 +29,7 @@ export default function DurationQuestion() {
     if (option) {
       window.sessionStorage.setItem("urootsDuration", option.label);
     }
-    router.push(`/lifestyle/${gender}`, { scroll: false });
+    router.push(`/lifestyle/${gender}`);
   };
 
   return (

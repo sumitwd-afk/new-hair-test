@@ -95,7 +95,7 @@ export default function PhoneQuestion() {
     // Submit partial lead to LeadSquared
     submitPartialLead(updatedDetails);
 
-    router.push("/gender", { scroll: false });
+    router.push("/gender");
   };
 
   return (

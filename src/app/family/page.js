@@ -23,7 +23,7 @@ export default function FamilyQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsFamilyHistory", label);
-    router.push("/triggers", { scroll: false });
+    router.push("/triggers");
   };
 
   return (

@@ -58,7 +58,7 @@ export default function HairProblemQuestion({ gender }) {
     window.sessionStorage.setItem("urootsGender", normalizedGender);
     
     // Auto redirect to family history step
-    router.push("/family", { scroll: false });
+    router.push("/family");
   };
 
   return (

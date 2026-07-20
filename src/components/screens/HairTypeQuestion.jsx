@@ -91,7 +91,7 @@ export default function HairTypeQuestion() {
   const handleSelectHairType = (id) => {
     setSelectedHairType(id);
     window.sessionStorage.setItem("urootsHairType", id);
-    router.push("/duration", { scroll: false });
+    router.push("/duration");
   };
 
   return (

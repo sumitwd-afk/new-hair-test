@@ -22,7 +22,7 @@ export default function SleepQuestion() {
   const handleSelect = (id, label) => {
     setSelected(id);
     window.sessionStorage.setItem("urootsSleepPattern", label);
-    router.push("/stress", { scroll: false });
+    router.push("/stress");
   };
 
   return (

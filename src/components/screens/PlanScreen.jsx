@@ -49,7 +49,7 @@ export default function PlanScreen() {
     };
 
     window.sessionStorage.setItem("urootsPlanDetails", JSON.stringify(updatedDetails));
-    router.push("/phone", { scroll: false });
+    router.push("/phone");
   };
 
   return (

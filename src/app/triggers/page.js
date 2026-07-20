@@ -38,7 +38,7 @@ export default function TriggersQuestion() {
     if (selected.length === 0) return;
     const labels = selected.map((id) => options.find((o) => o.id === id).label);
     window.sessionStorage.setItem("urootsTriggers", labels.join(", "));
-    router.push("/scalp-flakes", { scroll: false });
+    router.push("/scalp-flakes");
   };
 
   return (

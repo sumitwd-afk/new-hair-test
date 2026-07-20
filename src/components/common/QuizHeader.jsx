@@ -14,7 +14,7 @@ export default function QuizHeader() {
       return;
     }
 
-    router.push("/", { scroll: false });
+    router.push("/");
   };
 
   return (
