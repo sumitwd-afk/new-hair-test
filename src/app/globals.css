@@ -3645,8 +3645,13 @@ img{
         font-size: 1.8rem;
     }
     .result-user-box img {
-        margin: 2rem 0;
-        width: 100%;
+        margin: 2rem auto;
+        display: block;
+        width: 12rem !important;
+        height: 12rem !important;
+        object-fit: cover;
+        border-radius: 1.2rem;
+        border: 1px solid #e2e8f0;
     }
 
     .result-left-inner h1 {
