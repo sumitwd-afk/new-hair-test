@@ -2877,7 +2877,8 @@ img{
     }
 
     .review-card__name {
-        display: none;
+        display: block;
+        font-size: 1.6rem !important;
     }
 
     .review-card__name-sign {
