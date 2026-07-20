@@ -33,7 +33,7 @@ export default function Welcome({ startHref = "/plan" }) {
                     />
 
                     <p className="welcome-copy">
-                        A clinical hair diagnosis, personalised by QHT Clinic Doctors. <br/>
+                        A clinical hair diagnosis, personalised by QHT Clinic Doctors Team. <br/>
                         Trusted by <strong>50,000+ Indians.</strong>
                     </p>
 
