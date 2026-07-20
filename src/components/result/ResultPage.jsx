@@ -34,21 +34,21 @@ export default function ResultPage() {
     }
 
     if (!loading && typeof window !== "undefined") {
-      // Immediate scroll reset
+      // Force scroll to top at short intervals for the first 1000ms
+      // to fight off browser scroll restoration, Next.js router offsets, and late image rendering height shifts
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
       
-      // Delayed scroll reset to handle slower reflows
-      const timer1 = setTimeout(() => {
+      const interval = setInterval(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      }, 100);
-      
-      const timer2 = setTimeout(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      }, 300);
+      }, 50);
+
+      const timer = setTimeout(() => {
+        clearInterval(interval);
+      }, 1000);
 
       return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
+        clearInterval(interval);
+        clearTimeout(timer);
       };
     }
   }, [loading]);
