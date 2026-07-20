@@ -420,7 +420,7 @@ export async function submitFullLead(formData, file = null) {
   }
   if (formData.gender) payload.push({ Attribute: "mx_Gender", Value: formData.gender });
   if (formData.duration) payload.push({ Attribute: "mx_When_did_you_notice_hair_loss", Value: formData.duration });
-  if (formData.pattern) payload.push({ Attribute: "mx_Select_Hair_Loss_Pattern", Value: formData.pattern });
+  if (formData.pattern) payload.push({ Attribute: "mx_Stages_looks_closest_to_your_current_pattern", Value: formData.pattern });
   if (formData.hairType) payload.push({ Attribute: "mx_Is_your_hair_loss", Value: formData.hairType });
 
   // Map lifestyle to conditions and symptoms
@@ -465,36 +465,36 @@ export async function submitFullLead(formData, file = null) {
     payload.push({ Attribute: "mx_Treatment_Goal", Value: formData.expectation });
   }
 
-  // Map new assessment questionnaire results to Suggested LSQ Schema fields from URoots_Hair_Test_Quiz_Reworded (1).xlsx
+  // Map new assessment questionnaire results to exact LSQ schema names verified from live query
   if (formData.familyHistory) {
-    payload.push({ Attribute: "mx_Family_History", Value: formData.familyHistory });
+    payload.push({ Attribute: "mx_Does_thinning_run_in_your_family", Value: formData.familyHistory });
   }
   if (formData.triggers) {
-    payload.push({ Attribute: "mx_Recent_Health_Events", Value: formData.triggers });
+    payload.push({ Attribute: "mx_In_the_last_12_months_have_any_of_these_affected", Value: formData.triggers });
   }
   if (formData.scalpFlaking) {
-    payload.push({ Attribute: "mx_Scalp_Condition", Value: formData.scalpFlaking });
+    payload.push({ Attribute: "mx_How_would_you_describe_your_scalp_flaking", Value: formData.scalpFlaking });
   }
   if (formData.sleepPattern) {
-    payload.push({ Attribute: "mx_Sleep_Quality", Value: formData.sleepPattern });
+    payload.push({ Attribute: "mx_Hows_your_sleep_most_nights", Value: formData.sleepPattern });
   }
   if (formData.stressLevel) {
-    payload.push({ Attribute: "mx_Stress_Level", Value: formData.stressLevel });
+    payload.push({ Attribute: "mx_Whats_your_typical_stress_level_these_days", Value: formData.stressLevel });
   }
   if (formData.healthConditions) {
-    payload.push({ Attribute: "mx_Health_Conditions", Value: formData.healthConditions });
+    payload.push({ Attribute: "mx_Are_you_managing_any_of_these_right_now", Value: formData.healthConditions });
   }
   if (formData.bowelMovements) {
-    payload.push({ Attribute: "mx_Bowel_Regularity", Value: formData.bowelMovements });
+    payload.push({ Attribute: "mx_How_regular_are_your_bowel_movements", Value: formData.bowelMovements });
   }
   if (formData.acidityBloating) {
-    payload.push({ Attribute: "mx_Gut_Discomfort", Value: formData.acidityBloating });
+    payload.push({ Attribute: "mx_Do_you_get_gas_acidity_or_bloating", Value: formData.acidityBloating });
   }
   if (formData.energyLevels) {
-    payload.push({ Attribute: "mx_Energy_Levels", Value: formData.energyLevels });
+    payload.push({ Attribute: "mx_How_does_your_energy_hold_up_through_the_day", Value: formData.energyLevels });
   }
   if (formData.takingSupplements) {
-    payload.push({ Attribute: "mx_Current_Supplements", Value: formData.takingSupplements });
+    payload.push({ Attribute: "mx_Currently_taking_any_hair_supplements_or_vitamins", Value: formData.takingSupplements });
   }
 
   payload.push(
