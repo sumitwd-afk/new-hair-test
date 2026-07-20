@@ -27,11 +27,12 @@ export default function ResultPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Scroll to the absolute top of the page when result page mounts
-    if (typeof window !== "undefined") {
+    if (!loading && typeof window !== "undefined") {
       window.scrollTo(0, 0);
     }
+  }, [loading]);
 
+  useEffect(() => {
     // 1. Load details from sessionStorage
     const planDetailsStr = window.sessionStorage.getItem("urootsPlanDetails");
     if (!planDetailsStr) {
