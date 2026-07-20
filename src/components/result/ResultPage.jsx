@@ -27,11 +27,29 @@ export default function ResultPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+    }
+
     if (!loading && typeof window !== "undefined") {
-      const timer = setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 150);
-      return () => clearTimeout(timer);
+      // Immediate scroll reset
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      
+      // Delayed scroll reset to handle slower reflows
+      const timer1 = setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 100);
+      
+      const timer2 = setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }, 300);
+
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
     }
   }, [loading]);
 
