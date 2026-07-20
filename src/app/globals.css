@@ -2751,6 +2751,9 @@ img{
 }
 
 @media (max-width: 768px) {
+    html, body {
+        scroll-behavior: auto !important;
+    }
     html {
         font-size: 2.5vw;
     }
