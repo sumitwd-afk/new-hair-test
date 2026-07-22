@@ -43,7 +43,7 @@ export const resultOverview = {
     badgeIcon: greenTickIcon,
     badgeLabel: "Expert advice",
     name: "Dr. Neha",
-    role: "Facial Aesthetic & Hair Transplant Surgeon",
+    role: "Hair Transplant Surgeon",
     degree: "MDS (Oral & Maxillofacial Surgery)",
     experience: "~10 Years",
     location: "Gurgaon",
