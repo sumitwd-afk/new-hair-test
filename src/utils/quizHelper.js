@@ -335,13 +335,20 @@ export function getProductRecommendations(formData) {
     addProduct('moisthair-shampoo', 5);
   }
 
-  // Sort and limit
-  const sortedProducts = Array.from(recommendations.entries())
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 4)
-    .map(([key]) => {
-      return { id: key, ...PRODUCTS[key] };
-    });
+  // Sort, de-duplicate by name, and limit to 4
+  const seenNames = new Set();
+  const sortedProducts = [];
+  const rawSorted = Array.from(recommendations.entries())
+    .sort((a, b) => b[1] - a[1]);
+
+  for (const [key] of rawSorted) {
+    const product = PRODUCTS[key];
+    if (product && !seenNames.has(product.name)) {
+      seenNames.add(product.name);
+      sortedProducts.push({ id: key, ...product });
+      if (sortedProducts.length === 4) break;
+    }
+  }
 
   return {
     products: sortedProducts,
@@ -501,6 +508,7 @@ export async function submitFullLead(formData, file = null) {
     { Attribute: "mx_Brand", Value: "URoots" },
     { Attribute: "mx_NDR_Reason", Value: "URoots" },
     { Attribute: "Source", Value: (campaign.SourceMedium && campaign.SourceMedium !== "organic") ? campaign.SourceMedium : "Organic" },
+    { Attribute: "mx_utm_source", Value: "Hair Test" },
     { Attribute: "SourceMedium", Value: (campaign.SourceMedium && campaign.SourceMedium !== "organic") ? campaign.SourceMedium : "Hair Test" },
     { Attribute: "mx_Campaign_id", Value: campaign.mx_Campaign_id || "" },
     { Attribute: "mx_utm_campaign_id", Value: campaign.mx_utm_campaign_id || "" },

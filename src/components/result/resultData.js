@@ -273,6 +273,6 @@ export const resultKit = {
       label: "3 month Promise",
     },
   ],
-  ctaLabel: "Add My Kit To Cart",
+  ctaLabel: "Order Now",
   ctaIcon: buttonArrowIcon,
 };
