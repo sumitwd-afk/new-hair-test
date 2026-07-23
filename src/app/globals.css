@@ -4165,3 +4165,17 @@ img{
     }
 }
 
+/* Hide lotus divider icon from all pages */
+.question-screen__lotus,
+.welcome-signature-mobile,
+.plan-screen__divider-lotus,
+.upload-screen__lotus,
+.age-screen__lotus,
+.lifestyle-screen__lotus,
+.hair-type-screen__lotus,
+.hair-problem-screen__lotus,
+.duration-screen__lotus {
+    display: none !important;
+}
+
+
