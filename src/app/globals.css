@@ -4061,7 +4061,6 @@ img{
     .result-footer,
     .consultation-banner,
     .show-mobile-only,
-    .desktop-sticky-sidebar,
     .result-testimonial-wrap,
     .result-addon-wrap,
     .result-faq-wrap,
@@ -4071,6 +4070,16 @@ img{
     footer,
     iframe {
         display: none !important;
+    }
+
+    .desktop-sticky-sidebar {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+        top: auto !important;
+        margin-top: 3rem !important;
+        page-break-inside: avoid !important;
     }
 
     /* Style the remaining overview section card */
