@@ -4103,6 +4103,10 @@ img{
         margin-left: 1rem !important;
     }
 
+    .print-only-link-wrapper {
+        display: block !important;
+    }
+
     /* Style the remaining overview section card */
     .result-left-top {
         margin: 0 !important;
