@@ -3600,9 +3600,11 @@ img{
         justify-content: space-between;
         border-top: 1px solid #d9d9d9;
         border-bottom: 1px solid #d9d9d9;
+        gap: 2rem;
     }
     .result-actions li {
         border: none;
+        flex: 1;
     }
     .result-actions li:first-child .result-action-button {
         padding: 0;
