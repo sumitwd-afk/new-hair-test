@@ -4089,22 +4089,19 @@ img{
         text-align: center !important;
         background: #C4FF3B !important;
         box-shadow: none !important;
-        text-decoration: none !important;
+        text-decoration: underline !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
     .result-cta span {
         display: inline-block !important;
         vertical-align: middle !important;
+        color: #1A1A1A !important;
+        text-decoration: underline !important;
     }
-    .result-cta img {
-        display: inline-block !important;
-        vertical-align: middle !important;
-        margin-left: 1rem !important;
-    }
-
-    .print-only-link-wrapper {
-        display: block !important;
+    .result-cta img,
+    .result-cta-icon {
+        display: none !important;
     }
 
     /* Style the remaining overview section card */

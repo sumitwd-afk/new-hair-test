@@ -55,35 +55,15 @@ export default function ResultKitSidebar({ kit }) {
         </div>
 
         {kit.checkoutUrl ? (
-          <>
-            <a
-              href={kit.checkoutUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="result-cta"
-            >
-              <span>{kit.ctaLabel}</span>
-              <Image src={kit.ctaIcon} alt="" aria-hidden="true" />
-            </a>
-            <div className="print-only-link-wrapper" style={{ display: "none", marginTop: "1.5rem", textAlign: "center" }}>
-              <span style={{ fontSize: "1.3rem", color: "#333", display: "block", marginBottom: "0.5rem" }}>
-                Can&apos;t click the button above? Tap the link below to checkout:
-              </span>
-              <a
-                href={kit.checkoutUrl}
-                style={{
-                  fontSize: "1.3rem",
-                  color: "#0284c7",
-                  textDecoration: "underline",
-                  wordBreak: "break-all",
-                  fontWeight: "500",
-                  display: "inline-block"
-                }}
-              >
-                {kit.checkoutUrl}
-              </a>
-            </div>
-          </>
+          <a
+            href={kit.checkoutUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="result-cta"
+          >
+            <span>{kit.ctaLabel}</span>
+            <Image src={kit.ctaIcon} alt="" aria-hidden="true" className="result-cta-icon" />
+          </a>
         ) : (
           <button type="button" className="result-cta">
             <span>{kit.ctaLabel}</span>
