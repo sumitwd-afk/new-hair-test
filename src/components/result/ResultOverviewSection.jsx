@@ -16,24 +16,25 @@ export default function ResultOverviewSection({ overview }) {
   return (
     <section className="result-left-top">
       <div className="result-left-inner">
-        <div className="img-box result-user-box">
-          <h1 className="desktop-none" >{overview.greeting}</h1>
-          {showUploaded ? (
-            // eslint-disable-next-line @next/next/no-img-element
+        {/* Mobile greeting */}
+        <h1 className="desktop-none" style={{ marginBottom: "1rem" }}>{overview.greeting}</h1>
+
+        {showUploaded && (
+          <div className="img-box result-user-box">
             <img
               src={overview.userImage}
               alt="User uploaded hair photo"
               style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }}
               onError={() => setImgError(true)}
             />
-          ) : (
-            <Image src={overview.userImage} alt="User avatar" />
-          )}
-          <p className="desktop-none" >
-            Based on your answers, you&apos;re experiencing{" "}
-            <strong>{overview.highlight}</strong> {overview.summarySuffix}
-          </p>
-        </div>
+          </div>
+        )}
+
+        {/* Mobile description */}
+        <p className="desktop-none" style={{ marginTop: showUploaded ? "1.5rem" : "0", marginBottom: "2rem" }}>
+          Based on your answers, you&apos;re experiencing{" "}
+          <strong>{overview.highlight}</strong> {overview.summarySuffix}
+        </p>
 
         <ul className="result-actions" aria-label="Result actions">
           {overview.actions.map((action) => {
