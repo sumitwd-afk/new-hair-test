@@ -4085,19 +4085,22 @@ img{
     }
 
     .result-cta {
-        display: block !important;
-        text-align: center !important;
-        background: #C4FF3B !important;
+        display: inline-block !important;
+        width: auto !important;
+        min-height: auto !important;
+        padding: 0.5rem 0 !important;
+        border: none !important;
+        background: transparent !important;
         box-shadow: none !important;
         text-decoration: underline !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+        text-align: left !important;
     }
     .result-cta span {
-        display: inline-block !important;
-        vertical-align: middle !important;
-        color: #1A1A1A !important;
+        display: inline !important;
+        color: #0284c7 !important;
         text-decoration: underline !important;
+        font-size: 2rem !important;
+        font-weight: 600 !important;
     }
     .result-cta img,
     .result-cta-icon {
