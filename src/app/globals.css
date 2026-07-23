@@ -4084,6 +4084,25 @@ img{
         page-break-inside: avoid !important;
     }
 
+    .result-cta {
+        display: block !important;
+        text-align: center !important;
+        background: #C4FF3B !important;
+        box-shadow: none !important;
+        text-decoration: none !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    .result-cta span {
+        display: inline-block !important;
+        vertical-align: middle !important;
+    }
+    .result-cta img {
+        display: inline-block !important;
+        vertical-align: middle !important;
+        margin-left: 1rem !important;
+    }
+
     /* Style the remaining overview section card */
     .result-left-top {
         margin: 0 !important;

@@ -60,7 +60,6 @@ export default function ResultKitSidebar({ kit }) {
             target="_blank"
             rel="noopener noreferrer"
             className="result-cta"
-            style={{ display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}
           >
             <span>{kit.ctaLabel}</span>
             <Image src={kit.ctaIcon} alt="" aria-hidden="true" />

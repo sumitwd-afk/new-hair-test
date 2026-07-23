@@ -35,7 +35,7 @@ export const resultOverview = {
     "due to stress, poor nutrition, & scalp imbalance.",
   userImage,
   actions: [
-    { id: "whatsapp", label: "Get on WhatsApp", icon: greyWhatsappIcon },
+    { id: "whatsapp", label: "Consult with Expert", icon: greyWhatsappIcon },
     { id: "save", label: "Save for later", icon: greyDownloadIcon },
   ],
   doctor: {
