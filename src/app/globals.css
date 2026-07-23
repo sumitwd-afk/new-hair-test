@@ -4044,6 +4044,7 @@ img{
         background: #FFFFFF !important;
     }
 
+    .result-page,
     .result-shell,
     .container,
     .result-layout,
@@ -4053,9 +4054,11 @@ img{
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
+        min-height: auto !important;
         display: block !important;
         box-shadow: none !important;
         border: none !important;
+        overflow: visible !important;
     }
 
     /* Explicitly hide non-essential elements using display: none to release height */
