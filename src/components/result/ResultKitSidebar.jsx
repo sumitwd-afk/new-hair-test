@@ -54,22 +54,15 @@ export default function ResultKitSidebar({ kit }) {
           ))}
         </div>
 
-        {kit.checkoutUrl ? (
-          <a
-            href={kit.checkoutUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="result-cta"
-          >
-            <span>{kit.ctaLabel}</span>
-            <Image src={kit.ctaIcon} alt="" aria-hidden="true" className="result-cta-icon" />
-          </a>
-        ) : (
-          <button type="button" className="result-cta">
-            <span>{kit.ctaLabel}</span>
-            <Image src={kit.ctaIcon} alt="" aria-hidden="true" />
-          </button>
-        )}
+        <a
+          href={kit.checkoutUrl || "https://theuroots.com/cart"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="result-cta"
+        >
+          <span>{kit.ctaLabel}</span>
+          <Image src={kit.ctaIcon} alt="" aria-hidden="true" className="result-cta-icon" />
+        </a>
       </div>
     </aside>
   );
