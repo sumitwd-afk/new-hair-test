@@ -54,34 +54,14 @@ export default function ResultKitSidebar({ kit }) {
           ))}
         </div>
 
-        <div style={{ position: "relative", width: "100%" }}>
-          <div className="result-cta" style={{ pointerEvents: "none" }}>
-            <span>{kit.ctaLabel}</span>
-            <Image src={kit.ctaIcon} alt="" aria-hidden="true" className="result-cta-icon" />
-          </div>
-          <a
-            href={kit.checkoutUrl || "https://theuroots.com/cart"}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              zIndex: 10,
-              display: "block",
-              background: "transparent",
-              textDecoration: "none",
-              border: "none",
-              outline: "none"
-            }}
-          >
-            <span style={{ opacity: 0, fontSize: "1px", display: "block" }}>
-              {kit.checkoutUrl || "https://theuroots.com/cart"}
-            </span>
-          </a>
-        </div>
+        <a
+          href={kit.checkoutUrl || "https://theuroots.com/cart"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="result-cta"
+        >
+          {kit.ctaLabel}
+        </a>
       </div>
     </aside>
   );

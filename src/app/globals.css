@@ -2274,20 +2274,13 @@ img{
     box-shadow: 0 4px 0 0 #000000;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 1rem;
-}
-
-.result-cta span {
     color: #1A1A1A;
     font-size: 2.2rem;
     line-height: 1.1;
     font-weight: 600;
-}
-
-.result-cta img {
-    width: 1rem; 
-    height: auto;
+    text-decoration: none;
 }
 
 .result-kit-floating-btn {
