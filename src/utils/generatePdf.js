@@ -62,8 +62,36 @@ export async function generateResultPdf() {
     pdfContainer.appendChild(kitClone);
   }
 
-  // Wait a tick for images to render
-  await new Promise((r) => setTimeout(r, 300));
+  // Fix Next.js <Image> elements: replace srcset-based imgs with simple img tags
+  // so html2canvas can render them properly
+  const allImgs = pdfContainer.querySelectorAll("img");
+  for (const img of allImgs) {
+    // Find the matching original image on the page to get its loaded src
+    const origImg = document.querySelector(`img[alt="${img.alt}"]`);
+    const resolvedSrc = origImg ? (origImg.currentSrc || origImg.src) : img.src;
+
+    // Remove srcset and sizes so html2canvas uses plain src
+    img.removeAttribute("srcset");
+    img.removeAttribute("sizes");
+    img.setAttribute("src", resolvedSrc);
+    img.setAttribute("crossorigin", "anonymous");
+    img.style.maxWidth = "100%";
+    img.style.height = "auto";
+  }
+
+  // Wait for images to fully load in the cloned container
+  await Promise.all(
+    Array.from(pdfContainer.querySelectorAll("img")).map(
+      (img) =>
+        new Promise((resolve) => {
+          if (img.complete) return resolve();
+          img.onload = resolve;
+          img.onerror = resolve;
+        })
+    )
+  );
+  // Extra buffer for rendering
+  await new Promise((r) => setTimeout(r, 500));
 
   try {
     // Render the container to canvas
