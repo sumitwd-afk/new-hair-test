@@ -4084,6 +4084,11 @@ img{
         page-break-inside: avoid !important;
     }
 
+    .result-kit-card {
+        position: relative !important;
+        top: auto !important;
+    }
+
     /* Style the remaining overview section card */
     .result-left-top {
         margin: 0 !important;
