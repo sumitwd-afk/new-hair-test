@@ -4089,33 +4089,6 @@ img{
         top: auto !important;
     }
 
-    .result-cta {
-        display: block !important;
-        width: 100% !important;
-        min-height: auto !important;
-        height: auto !important;
-        padding: 1.5rem 0 !important;
-        border: 1px solid #000000 !important;
-        background-color: #C4FF3B !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        text-align: center !important;
-        text-decoration: none !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-    }
-    .result-cta span {
-        display: inline-block !important;
-        color: #1A1A1A !important;
-        font-size: 2rem !important;
-        font-weight: 600 !important;
-        text-decoration: none !important;
-    }
-    .result-cta img,
-    .result-cta-icon {
-        display: none !important;
-    }
-
     /* Style the remaining overview section card */
     .result-left-top {
         margin: 0 !important;
