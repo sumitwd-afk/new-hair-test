@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ResultDoctorCard from "@/components/result/ResultDoctorCard";
+import { generateResultPdf } from "@/utils/generatePdf";
 
 export default function ResultOverviewSection({ overview }) {
   const [imgError, setImgError] = useState(false);
@@ -61,9 +62,7 @@ export default function ResultOverviewSection({ overview }) {
                     type="button"
                     className="result-action-button"
                     onClick={() => {
-                      if (typeof window !== "undefined") {
-                        window.print();
-                      }
+                      generateResultPdf();
                     }}
                   >
                     <span>{action.label}</span>
