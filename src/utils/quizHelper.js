@@ -112,13 +112,17 @@ export function initCampaignTracking() {
   const params = new URLSearchParams(window.location.search);
   const stored = JSON.parse(localStorage.getItem("campaignTracking") || "{}");
 
-  const sourceMedium = params.get("utm_source")
-    ? params.get("utm_source").toLowerCase()
-    : stored.SourceMedium || "organic";
+  const rawUtmSource = params.get("utm_source") || params.get("source") || "";
+  const fbclid = params.get("fbclid") || "";
+  const gclid = params.get("gclid") || "";
 
   const campaignName =
     params.get("utm_campaign") ||
+    params.get("campaign_name") ||
+    params.get("campaign") ||
+    params.get("utm_campaign_name") ||
     stored.mx_Campaign_id ||
+    stored.SourceCampaign ||
     "";
 
   const campaignId =
@@ -126,14 +130,40 @@ export function initCampaignTracking() {
     params.get("Campaign_id") ||
     params.get("utm_id") ||
     stored.mx_utm_campaign_id ||
+    campaignName ||
     "";
+
+  let sourceMedium = stored.SourceMedium || "organic";
+  if (rawUtmSource) {
+    const lowerSrc = rawUtmSource.toLowerCase();
+    if (lowerSrc.includes("facebook") || lowerSrc.includes("fb") || lowerSrc.includes("ig") || lowerSrc.includes("meta")) {
+      sourceMedium = "Meta Ads";
+    } else if (lowerSrc.includes("google") || lowerSrc.includes("cpc") || lowerSrc.includes("adwords")) {
+      sourceMedium = "Google Ads";
+    } else {
+      sourceMedium = rawUtmSource;
+    }
+  } else if (fbclid) {
+    sourceMedium = "Meta Ads";
+  } else if (gclid) {
+    sourceMedium = "Google Ads";
+  } else if (campaignName) {
+    const lowerCamp = campaignName.toLowerCase();
+    if (lowerCamp.includes("uroots") || lowerCamp.includes("yuvika") || lowerCamp.includes("young") || lowerCamp.includes("ht") || lowerCamp.includes("meta") || lowerCamp.includes("fb")) {
+      sourceMedium = "Meta Ads";
+    }
+  }
 
   localStorage.setItem(
     "campaignTracking",
     JSON.stringify({
       SourceMedium: sourceMedium,
+      rawUtmSource: rawUtmSource || stored.rawUtmSource || "",
+      fbclid: fbclid || stored.fbclid || "",
+      gclid: gclid || stored.gclid || "",
       mx_Campaign_id: campaignName,
-      mx_utm_campaign_id: campaignId
+      mx_utm_campaign_id: campaignId,
+      SourceCampaign: campaignName
     })
   );
 }
@@ -184,7 +214,7 @@ export function appendUtm(url, formData, opts = {}) {
       .filter(([, v]) => v)
       .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
       .join('&');
-    return url + sep + qs;
+    return `${url}${sep}${qs}`;
   }
 }
 
@@ -369,16 +399,31 @@ export async function submitPartialLead(formState) {
   const countryCode = formState.countryCode || "+91";
   const phone = `${countryCode}-${formState.phone}`;
 
+  let sourceVal = "Organic";
+  const src = (campaign.SourceMedium || "").toLowerCase();
+  const rawUtm = (campaign.rawUtmSource || "").toLowerCase();
+  if (src.includes("fb") || src.includes("facebook") || src.includes("meta") || rawUtm.includes("fb") || rawUtm.includes("meta") || rawUtm.includes("ig") || campaign.fbclid) {
+    sourceVal = "Meta Ads";
+  } else if (src.includes("google") || src.includes("cpc") || rawUtm.includes("google") || campaign.gclid) {
+    sourceVal = "Google Ads";
+  } else if (campaign.SourceMedium && campaign.SourceMedium !== "organic") {
+    sourceVal = campaign.SourceMedium;
+  }
+
+  const utmSourceVal = campaign.rawUtmSource || (sourceVal === "Meta Ads" ? "Meta Ads" : "Hair Test");
+
   const payload = [
-    { Attribute: "FirstName", Value: formState.firstName || "" },
+    { Attribute: "FirstName", Value: formState.firstName || "Hair Test Visitor" },
     { Attribute: "Phone", Value: phone },
     { Attribute: "mx_Brand", Value: "URoots" },
     { Attribute: "mx_NDR_Reason", Value: "URoots" },
-    { Attribute: "Source", Value: (campaign.SourceMedium && campaign.SourceMedium !== "organic") ? campaign.SourceMedium : "Organic" },
-    { Attribute: "mx_utm_source", Value: "Hair Test" },
-    { Attribute: "SourceMedium", Value: (campaign.SourceMedium && campaign.SourceMedium !== "organic") ? campaign.SourceMedium : "Hair Test" },
-    { Attribute: "mx_Campaign_id", Value: campaign.mx_Campaign_id || "" },
-    { Attribute: "mx_utm_campaign_id", Value: campaign.mx_utm_campaign_id || "" },
+    { Attribute: "Source", Value: sourceVal },
+    { Attribute: "SourceMedium", Value: "Hair Test" },
+    { Attribute: "mx_utm_source", Value: utmSourceVal },
+    { Attribute: "mx_Source_channel", Value: "Hair Test Quiz" },
+    { Attribute: "SourceCampaign", Value: campaign.SourceCampaign || campaign.mx_Campaign_id || "" },
+    { Attribute: "mx_Campaign_id", Value: campaign.mx_Campaign_id || campaign.SourceCampaign || "" },
+    { Attribute: "mx_utm_campaign_id", Value: campaign.mx_utm_campaign_id || campaign.mx_Campaign_id || "" },
     { Attribute: "SearchBy", Value: "Phone" }
   ];
 
@@ -394,7 +439,8 @@ export async function submitPartialLead(formState) {
     const res = await fetch(API_ENDPOINT, { method: "POST", body: fd });
     if (res.ok) {
       sessionStorage.setItem("partialLeadSent", "true");
-      console.log("Partial lead submitted successfully.");
+      console.log("Partial lead submitted successfully for phone:", phone, "Source:", sourceVal, "SubSource: Hair Test");
+      trackMetaLead();
     }
   } catch (err) {
     console.error("Error submitting partial lead:", err);
@@ -415,11 +461,8 @@ export async function submitFullLead(formData, file = null) {
   if (formData.firstName) payload.push({ Attribute: "FirstName", Value: formData.firstName });
   if (formData.city) payload.push({ Attribute: "mx_City", Value: formData.city });
   if (formData.age) {
-    // Send age group label directly to mx_Patient_Age_Group (LSQ Dropdown field)
-    // e.g. "18–24Y", "25–34Y", "35–44Y", "45–54Y", "55Y+"
     payload.push({ Attribute: "mx_Patient_Age_Group", Value: formData.age });
 
-    // Also keep the numeric age for mx_Patient_Age (existing field)
     const ageNum = parseInt(formData.age, 10);
     if (!isNaN(ageNum)) {
       payload.push({ Attribute: "mx_Patient_Age", Value: ageNum });
@@ -430,7 +473,6 @@ export async function submitFullLead(formData, file = null) {
   if (formData.pattern) payload.push({ Attribute: "mx_Stages_looks_closest_to_your_current_pattern", Value: formData.pattern });
   if (formData.hairType) payload.push({ Attribute: "mx_Is_your_hair_loss", Value: formData.hairType });
 
-  // Map lifestyle to conditions and symptoms
   const lifestyle = formData.lifestyle || [];
   const medicalConditions = [];
   const scalpSymptoms = [];
@@ -472,7 +514,6 @@ export async function submitFullLead(formData, file = null) {
     payload.push({ Attribute: "mx_Treatment_Goal", Value: formData.expectation });
   }
 
-  // Map new assessment questionnaire results to exact LSQ schema names verified from live query
   if (formData.familyHistory) {
     payload.push({ Attribute: "mx_Does_thinning_run_in_your_family", Value: formData.familyHistory });
   }
@@ -504,14 +545,29 @@ export async function submitFullLead(formData, file = null) {
     payload.push({ Attribute: "mx_Currently_taking_any_hair_supplements_or_vitamins", Value: formData.takingSupplements });
   }
 
+  let sourceVal = "Organic";
+  const src = (campaign.SourceMedium || "").toLowerCase();
+  const rawUtm = (campaign.rawUtmSource || "").toLowerCase();
+  if (src.includes("fb") || src.includes("facebook") || src.includes("meta") || rawUtm.includes("fb") || rawUtm.includes("meta") || rawUtm.includes("ig") || campaign.fbclid) {
+    sourceVal = "Meta Ads";
+  } else if (src.includes("google") || src.includes("cpc") || rawUtm.includes("google") || campaign.gclid) {
+    sourceVal = "Google Ads";
+  } else if (campaign.SourceMedium && campaign.SourceMedium !== "organic") {
+    sourceVal = campaign.SourceMedium;
+  }
+
+  const utmSourceVal = campaign.rawUtmSource || (sourceVal === "Meta Ads" ? "Meta Ads" : "Hair Test");
+
   payload.push(
     { Attribute: "mx_Brand", Value: "URoots" },
     { Attribute: "mx_NDR_Reason", Value: "URoots" },
-    { Attribute: "Source", Value: (campaign.SourceMedium && campaign.SourceMedium !== "organic") ? campaign.SourceMedium : "Organic" },
-    { Attribute: "mx_utm_source", Value: "Hair Test" },
-    { Attribute: "SourceMedium", Value: (campaign.SourceMedium && campaign.SourceMedium !== "organic") ? campaign.SourceMedium : "Hair Test" },
-    { Attribute: "mx_Campaign_id", Value: campaign.mx_Campaign_id || "" },
-    { Attribute: "mx_utm_campaign_id", Value: campaign.mx_utm_campaign_id || "" },
+    { Attribute: "Source", Value: sourceVal },
+    { Attribute: "SourceMedium", Value: "Hair Test" },
+    { Attribute: "mx_utm_source", Value: utmSourceVal },
+    { Attribute: "mx_Source_channel", Value: "Hair Test Quiz" },
+    { Attribute: "SourceCampaign", Value: campaign.SourceCampaign || campaign.mx_Campaign_id || "" },
+    { Attribute: "mx_Campaign_id", Value: campaign.mx_Campaign_id || campaign.SourceCampaign || "" },
+    { Attribute: "mx_utm_campaign_id", Value: campaign.mx_utm_campaign_id || campaign.mx_Campaign_id || "" },
     { Attribute: "SearchBy", Value: "Phone" }
   );
 
